@@ -1,0 +1,12 @@
+.span12
+  = simple_form_for proposal, html: { class: 'form-vertical' }, defaults: { input_html: { class: 'span6' } } do |f|
+    = f.input :speaker_name, label: "Your name", required: true
+    = f.input :email, label: "Your email address", required: true
+    = f.input :title, label: "Title of your talk", required: true
+    = f.input :description, label: "Brief description of your talk (250 words maximum)", required: true
+    = f.input :bio, label: "A one sentence biographical description of your background.", required: true
+    = f.input :website, label: "Your website URL, if any", required: false
+    = f.input :phone, label: "Daytime phone number", required: false
+
+    .actions
+      = f.button :submit, value: "Save Proposal", class: "btn btn-primary"

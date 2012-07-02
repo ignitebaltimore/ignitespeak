@@ -1,0 +1,6 @@
+- flash.each do |name, msg|
+  .fade.in{class: alert_class(name)}
+    = msg
+
+= content_for :bottom do
+  = javascript_tag("$(makeAlertDismissable());")
