@@ -36,11 +36,11 @@ Spork.prefork do
       GC.disable
     end
 
-    config.before(:each,:type => :request) do
+    config.before(:each) do
       DatabaseCleaner.start
     end
 
-    config.after(:each,:type => :request) do
+    config.after(:each) do
       DatabaseCleaner.clean
     end
 

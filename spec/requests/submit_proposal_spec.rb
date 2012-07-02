@@ -18,7 +18,7 @@ describe do
     ActionMailer::Base.deliveries.size.should == 0
     Proposal.count.should == 0
     click_button "Save Proposal"
-    #ActionMailer::Base.deliveries.size.should == 1
+    ActionMailer::Base.deliveries.size.should == 1
     Proposal.count.should == 1
 
     Dom::Flash::Success.all.should_not be_empty
@@ -28,11 +28,15 @@ describe do
     proposal.description.should == description
     proposal.email.should == email
     proposal.bio.should == bio
-    pending "should have sent email"
     email = ActionMailer::Base.deliveries.last
+    email.subject.should =~ /Thank you/i
+    email.body.should =~ /#{proposal_path(id: Proposal.first.hash_code)}/
   end
 
   it "Users see validation errors when submitting incorrect proposals" do
-    pending
+    visit "/"
+    click_button "Save Proposal"
+    Dom::Flash::Error.all.should_not be_empty
+    Proposal.count.should == 0
   end
 end

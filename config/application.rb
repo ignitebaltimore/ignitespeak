@@ -68,5 +68,7 @@ module Ignitespeak
     # recommended in Devise docs, for deploying 3.1 apps to Heroku
     # config.assets.initialize_on_precompile = false
     config.assets.initialize_on_precompile = false
+
+    config.action_mailer.default_url_options = { host: "speak.ignitebaltimore.com" }
   end
 end

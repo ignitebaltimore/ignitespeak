@@ -24,6 +24,6 @@ describe Proposal do
     proposal.hash_code.should == "0c71da6154"
   end
 
-  pending "does not allow long bios"
-  pending "does not allow long descriptions"
+  it { should ensure_length_of(:description).is_at_most(1000) }
+  it { should ensure_length_of(:bio).is_at_most(100) }
 end

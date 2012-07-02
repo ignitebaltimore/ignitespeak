@@ -18,10 +18,16 @@
 require "digest/sha2"
 
 class Proposal < ActiveRecord::Base
-  attr_accessible :bio, :description, :email, :hash_code, :phone, :title, :website, :speaker_name
-  validates_presence_of :title, :description, :email, :bio, :speaker_name
+  attr_accessible :bio, :description, :email, :phone, :title, :website, :speaker_name
+  validates_presence_of :title, :description, :email, :bio, :speaker_name, allow_blank: false
+  validates :description, length: { maximum: 1000 }
+  validates :bio, length: { maximum: 100 }
 
   before_create :save_hash_code
+
+  def to_param
+    persisted? ? hash_code : nil
+  end
 
   private
 

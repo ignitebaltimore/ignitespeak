@@ -13,3 +13,13 @@
   .span12.bio= proposal.bio
   %h2.span12 Speaker Website
   .span12.website= proposal.website
+
+%br
+
+.row
+  .span12= link_to "Edit This Proposal", edit_proposal_url(id: proposal.hash_code), class: "btn btn-primary"
+
+%br
+
+.row
+  .span12= button_to "Delete This Proposal", proposal_url(id: proposal.hash_code), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
