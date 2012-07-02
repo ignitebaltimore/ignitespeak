@@ -36,4 +36,5 @@ group :development, :test do
   gem "guard-spork"
   gem "guard-rspec"
   gem "rspec-instafail"
+  gem "factory_girl", require: false
 end

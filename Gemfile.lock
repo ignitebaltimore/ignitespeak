@@ -66,6 +66,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (3.5.0)
+      activesupport (>= 3.0.0)
     ffi (1.0.11)
     foreigner (1.1.6)
       activerecord (>= 3.0.0)
@@ -205,6 +207,7 @@ DEPENDENCIES
   database_cleaner
   dim
   domino
+  factory_girl
   foreigner
   guard-rspec
   guard-spork
