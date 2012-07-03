@@ -22,6 +22,7 @@ class Proposal < ActiveRecord::Base
   validates_presence_of :title, :description, :email, :bio, :speaker_name, allow_blank: false
   validates :description, length: { maximum: 1000 }
   validates :bio, length: { maximum: 100 }
+  validates :speaker_name, :title, :email, :phone, :website, length: { maximum: 254 }
 
   before_create :save_hash_code
 

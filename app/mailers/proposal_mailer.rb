@@ -1,5 +1,7 @@
 class ProposalMailer < ActionMailer::Base
-  default from: "speak@ignitebaltimore.com"
+  speak_addr = "Ignite Baltimore <speak@ignitebaltimore.com>"
+  default from: speak_addr
+  default "reply-to" => speak_addr
 
   def confirmed_email(proposal)
     @proposal = proposal
