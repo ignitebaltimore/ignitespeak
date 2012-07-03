@@ -18,10 +18,14 @@
 require 'spec_helper'
 
 describe Proposal do
-  it "creates a hash code upon creation" do
-    proposal = build(:proposal,hash_code: nil,title: "A Tale of Two Cities")
-    proposal.save!
-    proposal.hash_code.should == "0c71da6154"
+  context "at a certain time of day" do
+    before { Time.stub!(:now).and_return(Time.new(2012,7,3,9,25)) }
+
+    it "creates a hash code upon creation" do
+      proposal = build(:proposal,hash_code: nil,title: "A Tale of Two Cities")
+      proposal.save!
+      proposal.hash_code.should == "4b585852a5"
+    end
   end
 
   it { should ensure_length_of(:speaker_name).is_at_most(254) }

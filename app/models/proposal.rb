@@ -33,6 +33,6 @@ class Proposal < ActiveRecord::Base
   private
 
   def save_hash_code
-    self.hash_code = Digest::SHA2.hexdigest(title).to_s.first(10)
+    self.hash_code = Digest::SHA2.hexdigest("#{title} #{Time.now.to_s}").to_s.first(10)
   end
 end
