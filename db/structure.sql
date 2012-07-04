@@ -79,7 +79,7 @@ CREATE TABLE schema_migrations (
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY proposals ALTER COLUMN id SET DEFAULT nextval('proposals_id_seq'::regclass);
+ALTER TABLE proposals ALTER COLUMN id SET DEFAULT nextval('proposals_id_seq'::regclass);
 
 
 --
@@ -101,7 +101,7 @@ CREATE INDEX index_proposals_on_created_at ON proposals USING btree (created_at)
 -- Name: index_proposals_on_hash_code; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_proposals_on_hash_code ON proposals USING btree (hash_code);
+CREATE UNIQUE INDEX index_proposals_on_hash_code ON proposals USING btree (hash_code);
 
 
 --
@@ -118,3 +118,5 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 INSERT INTO schema_migrations (version) VALUES ('20120702175322');
 
 INSERT INTO schema_migrations (version) VALUES ('20120702183557');
+
+INSERT INTO schema_migrations (version) VALUES ('20120704192838');

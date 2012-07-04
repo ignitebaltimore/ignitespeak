@@ -28,6 +28,14 @@ describe Proposal do
     end
   end
 
+  context "database constraints" do
+    it "should require unique hash codes" do
+      first = create(:proposal,title: "A title")
+      second = create(:proposal,title: "Another title")
+      second.hash_code = first.hash_code
+      expect { second.save! }.to raise_error
+    end
+  end
   it { should ensure_length_of(:speaker_name).is_at_most(254) }
   it { should ensure_length_of(:title).is_at_most(254) }
   it { should ensure_length_of(:email).is_at_most(254) }
