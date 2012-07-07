@@ -23,6 +23,7 @@ end
 
 group :development do
   gem "annotate", :git => "https://github.com/ctran/annotate_models.git"
+  gem "factory_girl_rails"
 end
 
 group :development, :test do
@@ -36,5 +37,8 @@ group :development, :test do
   gem "guard-spork"
   gem "guard-rspec"
   gem "rspec-instafail"
+end
+
+group :test do
   gem "factory_girl", require: false
 end
