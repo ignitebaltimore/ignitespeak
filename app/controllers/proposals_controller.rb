@@ -1,7 +1,12 @@
 class ProposalsController < ApplicationController
   before_filter :find_proposal, only: [:show,:destroy,:edit,:update]
 
-  helper_method :proposal
+  helper_method :proposal, :proposals
+
+  def index
+    redirect_to new_proposal_url unless params[:auth] == AppContainer.auth_code
+    @proposals = Proposal.all
+  end
 
   def new
     @title = "New Ignite Speaking Proposal"
@@ -47,7 +52,7 @@ class ProposalsController < ApplicationController
 
   private
 
-  attr_reader :proposal
+  attr_reader :proposal, :proposals
 
   def find_proposal
     @proposal = Proposal.find_by_hash_code(params[:id])

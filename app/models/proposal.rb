@@ -26,6 +26,8 @@ class Proposal < ActiveRecord::Base
 
   before_create :save_hash_code
 
+  default_scope order(:created_at)
+
   def to_param
     persisted? ? hash_code : nil
   end
