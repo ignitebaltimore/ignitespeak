@@ -8,4 +8,9 @@ class ProposalMailer < ActionMailer::Base
     @url = proposal_url(proposal)
     mail(to: proposal.email, subject: "Thank you for your Ignite Baltimore proposal")
   end
+
+  def all_proposals(html)
+    @html = html
+    mail(to: "mike@subelsky.com", subject: "All Ignite Proposals")
+  end
 end
