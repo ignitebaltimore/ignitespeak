@@ -79,7 +79,7 @@ CREATE TABLE schema_migrations (
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE proposals ALTER COLUMN id SET DEFAULT nextval('proposals_id_seq'::regclass);
+ALTER TABLE ONLY proposals ALTER COLUMN id SET DEFAULT nextval('proposals_id_seq'::regclass);
 
 
 --
