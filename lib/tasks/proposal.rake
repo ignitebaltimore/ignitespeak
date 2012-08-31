@@ -11,6 +11,13 @@ namespace :proposal do
       puts "#{proposal.title} - #{proposal.speaker_name}"
     end
   end
+
+  desc "Process scraped voting results"
+  task :process_votes do
+    #html = IO.read("/Users/subelsky/Desktop/Inbox/survey.html")
+    #rows = Nokogiri::HTML(html).css("tr")[????].collect { |r| r.children.to_a.values_at(0,3).collect(&:content) }.sort_by(&:last).reverse.collect { |r| "#{r.first} - #{r.last}" }
+    #rows.each
+  end
 end
 #5 New Philosophers You Would Love to Know About! - Ron Spencer
 #How I won $2.4 million from the Pepsi Refresh Everything contest - Brandon Silverman
