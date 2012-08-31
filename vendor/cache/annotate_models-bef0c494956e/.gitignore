@@ -1,0 +1,12 @@
+.DS_Store
+doc/*
+rdoc/*
+coverage/*
+spec/debug.log
+pkg/*
+dist
+Gemfile.lock
+*.gem
+/.idea/
+.rvmrc
+.bundle/
