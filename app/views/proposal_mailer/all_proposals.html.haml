@@ -10,4 +10,11 @@
 
 %p= "-Mike, Neal, and Jen"
 
-= @html
+- @proposals.each do |proposal|
+  %h1= proposal.title
+  %h2= "Submitted by #{proposal.speaker_name}"
+  %h3 Description
+  %p= proposal.description
+  %h3 Speaker Bio
+  %p= proposal.bio
+  %p= "Speaker website: <a href='#{proposal.website}'>#{proposal.website}</a></p>" if proposal.website?

@@ -9,8 +9,8 @@ class ProposalMailer < ActionMailer::Base
     mail(to: proposal.email, subject: "Thank you for your Ignite Baltimore proposal")
   end
 
-  def all_proposals(html)
-    @html = html
+  def all_proposals(proposals)
+    @proposals = proposals
     mail(to: "mike@subelsky.com", subject: "All Ignite Proposals")
   end
 end
