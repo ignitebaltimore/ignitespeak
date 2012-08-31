@@ -17,4 +17,7 @@
   %p= proposal.description
   %h3 Speaker Bio
   %p= proposal.bio
-  %p= "Speaker website: <a href='#{proposal.website}'>#{proposal.website}</a></p>" if proposal.website?
+  - if proposal.website?
+    %p Speaker website:
+    %a{href: proposal.website}
+      = proposal.website
