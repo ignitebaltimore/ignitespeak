@@ -1,6 +1,0 @@
-spec/**/*.rb
-lib/**/*.rb
--
-README.rdoc
-CHANGELOG.rdoc
-TODO.rdoc
