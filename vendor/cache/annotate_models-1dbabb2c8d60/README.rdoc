@@ -1,0 +1,274 @@
+== Annotate (aka AnnotateModels)
+
+IMPORTANT:  If you're upgrading from a previous version, including 2.5.0,
+re-run the generator task!
+
+Add a comment summarizing the current schema to the top or bottom of each of
+your...
+
+- ActiveRecord models
+- Fixture files
+- Tests and Specs
+- Object Daddy exemplars
+- Machinist blueprints
+- Fabrication fabricators
+- Thoughtbot's factory_girl factories, i.e. the (spec|test)/factories/<model>_factory.rb files
+- routes.rb file (for Rails projects)
+
+The schema comment looks like this:
+
+   # == Schema Info
+   #
+   # Table name: line_items
+   #
+   #  id                  :integer(11)    not null, primary key
+   #  quantity            :integer(11)    not null
+   #  product_id          :integer(11)    not null
+   #  unit_price          :float
+   #  order_id            :integer(11)
+   #
+
+    class LineItem < ActiveRecord::Base
+      belongs_to :product
+     . . .
+
+It also annotates geometrical columns, geom type and srid, when using
+`SpatialAdapter` or `PostgisAdapter`:
+
+   # == Schema Info
+   #
+   # Table name: trips
+   #
+   #  local           :geometry        point, 4326
+   #  path            :geometry        line_string, 4326
+
+Also, if you pass the -r option, it'll annotate routes.rb with the output of
+`rake routes`.
+
+
+== Install
+
+Into Gemfile from rubygems.org:
+
+    gem 'annotate', ">=2.5.0"
+
+Into Gemfile from Github:
+
+    gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+
+Into environment gems from rubygems.org:
+
+    gem install annotate
+
+Into environment gems from Github checkout:
+
+    git clone git://github.com/ctran/annotate_models.git annotate_models
+    cd annotate_models
+    rake build
+    gem install pkg/annotate-*.gem
+
+
+== Usage
+
+(If you used the Gemfile install, prefix the below commands with `bundle exec`.)
+
+=== Usage in Rails
+
+To annotate all your models, tests, fixtures, and factories:
+
+    cd /path/to/app
+    annotate
+
+To annotate just your models, tests, and factories:
+
+    annotate --exclude fixtures
+
+To annotate just your models:
+
+    annotate --exclude tests,fixtures,factories
+
+To annotate routes.rb:
+
+    annotate --routes
+
+To remove model/test/fixture/factory annotations:
+
+    annotate --delete
+
+To remove routes.rb annotations:
+
+    annotate --routes --delete
+
+
+== Configuration
+
+
+=== Usage Outside of Rails
+
+Everything above applies, except that --routes is not meaningful, and you will
+probably need to explicitly set one or more `--require` option(s), and/or one
+or more `--model-dir` options to inform annotate about the structure of your
+project and help it bootstrap and load the relevant code.
+
+
+
+== Configuration
+
+If you want to always skip annotations on a particular model, add this string
+anywhere in the file:
+
+    # -*- SkipSchemaAnnotations
+
+To generate a configuration file (in the form of a `.rake` file), to set
+default options:
+
+    rails g annotate:install
+
+Edit this file to control things like output format, where annotations are
+added (top or bottom of file), and in which artifacts.
+
+
+=== Configuration in Rails
+
+To generate a configuration file (in the form of a `.rake` file), to set
+default options:
+
+    rails g annotate:install
+
+Edit this file to control things like output format, where annotations are
+added (top or bottom of file), and in which artifacts.
+== Rails Integration
+
+By default, once you've generated a configuration file, annotate will be
+executed whenever you run `rake db:migrate` (but only in development mode).
+If you want to disable this behavior permanently, edit the `.rake` file and
+change:
+
+    'skip_on_db_migrate'   => "false",
+
+To:
+
+    'skip_on_db_migrate'   => "try",
+
+If you want to run `rake db:migrate` as a one-off without running annotate,
+you can do so with a simple environment variable, instead of editing the
+`.rake` file:
+
+    skip_on_db_migrate=1 rake db:migrate
+
+
+== Options
+
+    Usage: annotate [options] [model_file]*
+        -d, --delete                     Remove annotations from all model files or the routes.rb file
+        -p, --position [before|after]    Place the annotations at the top (before) or the bottom (after) of the model/test/fixture/factory/routes file(s)
+            --pc, --position-in-class [before|after]
+                                         Place the annotations at the top (before) or the bottom (after) of the model file
+            --pf, --position-in-factory [before|after]
+                                         Place the annotations at the top (before) or the bottom (after) of any factory files
+            --px, --position-in-fixture [before|after]
+                                         Place the annotations at the top (before) or the bottom (after) of any fixture files
+            --pt, --position-in-test [before|after]
+                                         Place the annotations at the top (before) or the bottom (after) of any test files
+            --pr, --position-in-routes [before|after]
+                                         Place the annotations at the top (before) or the bottom (after) of the routes.rb file
+        -r, --routes                     Annotate routes.rb with the output of 'rake routes'
+        -v, --version                    Show the current version of this gem
+        -m, --show-migration             Include the migration version number in the annotation
+        -i, --show-indexes               List the table's database indexes in the annotation
+        -s, --simple-indexes             Concat the column's related indexes in the annotation
+            --model-dir dir              Annotate model files stored in dir rather than app/models
+            --ignore-model-subdirects    Ignore subdirectories of the models directory
+            --sort                       Sort columns alphabetically, rather than in creation order
+        -R, --require path               Additional file to require before loading models, may be used multiple times
+        -e [tests,fixtures,factories],   Do not annotate fixtures, test files, and/or factories
+            --exclude
+        -f [bare|rdoc|markdown],         Render Schema Infomation as plain/RDoc/Markdown
+            --format
+            --force                      Force new annotations even if there are no changes.
+            --trace                      If unable to annotate a file, print the full stack trace, not just the exception message.
+
+
+== Sorting
+
+By default, columns will be sorted in database order (i.e. the order in which
+migrations were run).
+
+If you prefer to sort alphabetically so that the results of
+annotation are consistent regardless of what order migrations are executed in,
+use  --sort.
+
+
+== Markdown
+
+The format produced is actually MultiMarkdown, making use of the syntax
+extension for tables.  It's recommended you use `kramdown` as your parser if
+you want to use this format.  If you're using `yard` to generate documentation,
+specify a format of markdown with `kramdown` as the provider by adding this to
+your `.yardopts` file:
+
+    --markup markdown
+    --markup-provider kramdown
+
+Be sure to add this to your `Gemfile` as well:
+
+    gem 'kramdown', :groups => [:development], :require => false
+
+
+== WARNING
+
+Note that this code will blow away the initial/final comment block in your
+models if it looks like it was previously added by this gem, so you don't want
+to add additional text to an automatically created comment block.
+
+BACK UP YOUR MODELS BEFORE USING THIS TOOL!
+
+
+== Links
+
+- Factory Girl: http://github.com/thoughtbot/factory_girl
+- Object Daddy: http://github.com/flogic/object_daddy
+- Machinist: http://github.com/notahat/machinist
+- Fabrication: http://github.com/paulelliott/fabrication
+- SpatialAdapter: http://github.com/pdeffendol/spatial_adapter
+- PostgisAdapter: http://github.com/nofxx/postgis_adapter
+
+
+== License
+
+Released under the same license as Ruby. No Support. No Warranty.
+
+
+== Authors
+
+- Original code by: Dave Thomas -- Pragmatic Programmers, LLC <http://agilewebdevelopment.com/plugins/annotate_models>
+- Overhauled by: Alex Chaffee <http://alexch.github.com> alex@stinky.com
+- Gemmed by: Cuong Tran <http://github.com/ctran> ctran@pragmaquest.com
+- Maintained by: Alex Chaffee and Cuong Tran
+- Homepage: http://github.com/ctran/annotate_models
+
+With help from:
+
+- Jack Danger - http://github.com/JackDanger
+- Michael Bumann - http://github.com/bumi
+- Henrik Nyh - http://github.com/henrik
+- Marcos Piccinini - http://github.com/nofxx
+- Neal Clark - http://github.com/nclark
+- Jacqui Maher - http://github.com/jacqui
+- Nick Plante - http://github.com/zapnap - http://blog.zerosum.org
+- Pedro Visintin - http://github.com/peterpunk - http://www.pedrovisintin.com
+- Bob Potter - http://github.com/bpot
+- Gavin Montague - http://github.com/govan
+- Alexander Semyonov - http://github.com/rotuka
+- Nathan Brazil - http://github.com/bitaxis
+- Ian Duggan http://github.com/ijcd
+- Jon Frisby http://github.com/mrjoy
+- Tsutomu Kuroda
+- Kevin Moore
+- Philip Hallstrom
+- Brent Greeff
+- Paul Alexander
+- Dmitry Lihachev
+- qichunren
+
+and many others that I may have missed to add.

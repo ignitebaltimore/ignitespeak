@@ -1,0 +1,142 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+begin
+  require 'bundler'
+  Bundler.setup
+rescue Exception => e
+end
+
+here = File.expand_path(File.dirname __FILE__)
+$:<< "#{here}/../lib"
+
+require 'optparse'
+require 'annotate'
+Annotate.bootstrap_rake
+
+target = {
+  :klass => AnnotateModels,
+  :task => :do_annotations,
+}
+has_set_position = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: annotate [options] [model_file]*"
+
+  opts.on('-d', '--delete',
+          "Remove annotations from all model files or the routes.rb file") do
+
+    target[:task] = :remove_annotations
+  end
+
+  opts.on('-p', '--position [before|after]', ['before', 'after'],
+          "Place the annotations at the top (before) or the bottom (after) of the model/test/fixture/factory/routes file(s)") do |p|
+    ENV['position'] = p
+    [
+      'position_in_class','position_in_factory','position_in_fixture','position_in_test', 'position_in_routes'
+    ].each do |key|
+      ENV[key] = p unless(has_set_position[key])
+    end
+  end
+
+  opts.on('--pc', '--position-in-class [before|after]', ['before', 'after'],
+          "Place the annotations at the top (before) or the bottom (after) of the model file") do |p|
+    ENV['position_in_class'] = p
+    has_set_position['position_in_class'] = true
+  end
+
+  opts.on('--pf', '--position-in-factory [before|after]', ['before', 'after'],
+          "Place the annotations at the top (before) or the bottom (after) of any factory files") do |p|
+    ENV['position_in_factory'] = p
+    has_set_position['position_in_factory'] = true
+  end
+
+  opts.on('--px', '--position-in-fixture [before|after]', ['before', 'after'],
+          "Place the annotations at the top (before) or the bottom (after) of any fixture files") do |p|
+    ENV['position_in_fixture'] = p
+    has_set_position['position_in_fixture'] = true
+  end
+
+  opts.on('--pt', '--position-in-test [before|after]', ['before', 'after'],
+          "Place the annotations at the top (before) or the bottom (after) of any test files") do |p|
+    ENV['position_in_test'] = p
+    has_set_position['position_in_test'] = true
+  end
+
+  opts.on('--pr', '--position-in-routes [before|after]', ['before', 'after'],
+          "Place the annotations at the top (before) or the bottom (after) of the routes.rb file") do |p|
+    ENV['position_in_test'] = p
+    has_set_position['position_in_routes'] = true
+  end
+
+  opts.on('-r', '--routes',
+          "Annotate routes.rb with the output of 'rake routes'") do
+    target = {
+      :klass => AnnotateRoutes,
+      :task => :do_annotations
+    }
+  end
+
+  opts.on('-v', '--version',
+          "Show the current version of this gem") do
+    puts "annotate v#{Annotate.version}"; exit
+  end
+
+  opts.on('-m', '--show-migration',
+          "Include the migration version number in the annotation") do
+    ENV['include_version'] = "yes"
+  end
+
+  opts.on('-i', '--show-indexes',
+          "List the table's database indexes in the annotation") do
+    ENV['show_indexes'] = "yes"
+  end
+
+  opts.on('-s', '--simple-indexes',
+          "Concat the column's related indexes in the annotation") do
+    ENV['simple_indexes'] = "yes"
+  end
+
+  opts.on('--model-dir dir',
+          "Annotate model files stored in dir rather than app/models") do |dir|
+    ENV['model_dir'] = dir
+  end
+
+  opts.on('--ignore-model-subdirects',
+          "Ignore subdirectories of the models directory") do |dir|
+    ENV['ignore_model_sub_dir'] = "yes"
+  end
+
+  opts.on('--sort',
+          "Sort columns alphabetically, rather than in creation order") do |dir|
+    ENV['sort'] = "yes"
+  end
+
+  opts.on('-R', '--require path',
+          "Additional file to require before loading models, may be used multiple times") do |path|
+    if !ENV['require'].blank?
+      ENV['require'] = ENV['require'] + ",#{path}"
+    else
+      ENV['require'] = path
+    end
+  end
+
+  opts.on('-e', '--exclude [tests,fixtures,factories]', ['tests','fixtures','factories'], "Do not annotate fixtures, test files, and/or factories") do |exclusions|
+    exclusions.each { |exclusion| ENV["exclude_#{exclusion}"] = "yes" }
+  end
+
+  opts.on('-f', '--format [bare|rdoc|markdown]', ['bare', 'rdoc', 'markdown'], 'Render Schema Infomation as plain/RDoc/Markdown') do |fmt|
+    ENV["format_#{fmt}"] = 'yes'
+  end
+
+  opts.on('--force', 'Force new annotations even if there are no changes.') do |force|
+    ENV['force'] = 'yes'
+  end
+
+  opts.on('--trace', 'If unable to annotate a file, print the full stack trace, not just the exception message.') do |value|
+    ENV['trace'] = 'yes'
+  end
+end.parse!
+
+
+options=Annotate.setup_options({ :is_rake => !ENV['is_rake'].blank? })
+Annotate.eager_load(options)
+target[:klass].send(target[:task], options)

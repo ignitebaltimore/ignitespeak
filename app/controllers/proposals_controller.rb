@@ -9,8 +9,13 @@ class ProposalsController < ApplicationController
   end
 
   def new
+    redirect_to closed_proposals_url if ENV["PROPOSALS_CLOSED"].present?
     @title = "New Ignite Speaking Proposal"
     @proposal = Proposal.new
+  end
+
+  def closed
+    @title = "Ignite Proposals Closed"
   end
 
   def create
