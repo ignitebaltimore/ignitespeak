@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/ctran/annotate_models.git
-  revision: 1dbabb2c8d6055500f5fedbb1bd5bdc32e015460
-  specs:
-    annotate (2.6.0.beta1)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -197,7 +189,6 @@ PLATFORMS
 
 DEPENDENCIES
   Empact-sexy_pg_constraints
-  annotate!
   bootstrap-sass
   capybara
   coffee-rails
