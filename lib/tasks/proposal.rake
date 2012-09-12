@@ -14,9 +14,9 @@ namespace :proposal do
 
   desc "Process scraped voting results"
   task :process_votes do
-    #html = IO.read("/Users/subelsky/Desktop/Inbox/survey.html")
-    #rows = Nokogiri::HTML(html).css("tr")[????].collect { |r| r.children.to_a.values_at(0,3).collect(&:content) }.sort_by(&:last).reverse.collect { |r| "#{r.first} - #{r.last}" }
-    #rows.each
+    html = IO.read("/Users/subelsky/Desktop/Inbox/survey.html")
+    rows = Nokogiri::HTML(html).css("tr.notranslate").collect { |r| r.children.to_a.values_at(0,3).collect(&:content) }.sort_by(&:last).reverse.collect { |r| "#{r.first} - #{r.last}" }
+    rows.each { |r| puts r }
   end
 
   desc "Get email addresses of active proposals"
