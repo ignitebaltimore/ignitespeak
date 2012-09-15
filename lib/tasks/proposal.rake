@@ -20,7 +20,7 @@ namespace :proposal do
   end
 
   desc "Get email addresses of active proposals"
-  task :emails do
+  task :emails => :environment do
     puts Proposal.all.map(&:email)
   end
 end
