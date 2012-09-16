@@ -49,3 +49,20 @@ namespace :proposal do
     end
   end
 end
+
+#lines = <<-LINES
+##
+#LINES
+
+#lines = lines.split(/\n/)
+#names = lines.map { |l| l.split(/ - /)[1] }
+
+#names.each_with_index do |name,index|
+  ## TODO make this only look at new proposals, not archived ones
+  #p = Proposal.find_by_speaker_name(name)
+
+  #raise "could not find speaker name #{name}, quitting" unless p
+  #p.position = index
+  #p.selected = true
+  #p.save!
+#end
