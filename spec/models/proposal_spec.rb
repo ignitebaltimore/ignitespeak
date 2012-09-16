@@ -13,29 +13,13 @@
 #  hash_code    :string(255)      not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  selected     :boolean          default(FALSE), not null
+#  position     :integer          default(0), not null
 #
 
 require 'spec_helper'
 
 describe Proposal do
-  context "at a certain time of day" do
-    before { Time.stub!(:now).and_return(Time.new(2012,7,3,9,25)) }
-
-    it "creates a hash code upon creation" do
-      proposal = build(:proposal,hash_code: nil,title: "A Tale of Two Cities")
-      proposal.save!
-      proposal.hash_code.should == "4b585852a5"
-    end
-  end
-
-  context "database constraints" do
-    it "should require unique hash codes" do
-      first = create(:proposal,title: "A title")
-      second = create(:proposal,title: "Another title")
-      second.hash_code = first.hash_code
-      expect { second.save! }.to raise_error
-    end
-  end
   it { should ensure_length_of(:speaker_name).is_at_most(254) }
   it { should ensure_length_of(:title).is_at_most(254) }
   it { should ensure_length_of(:email).is_at_most(254) }

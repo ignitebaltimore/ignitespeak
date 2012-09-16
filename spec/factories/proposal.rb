@@ -5,5 +5,9 @@ FactoryGirl.define do
     description "A fascinating account of these two cities"
     email "user@example.com"
     bio "I'm an expert on these two different locales"
+
+    trait :selected do
+      selected true
+    end
   end
 end

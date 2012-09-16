@@ -24,9 +24,28 @@ namespace :proposal do
     puts Proposal.all.map(&:email)
   end
 
+  desc "Show proposal title with email"
+  task :titles_with_email => :environment do
+    Proposal.order(:title).each {|p| puts "#{p.title} - #{p.email}" }
+  end
 
-   desc "Show proposal title with email"
-   task :titles_with_email => :environment do
-     Proposal.order(:title).each {|p| puts "#{p.title} - #{p.email}" }
-   end
+  desc "Show proposal title with name and bio"
+  task :program_info => :environment do
+    Proposal.selected.each {|p| puts "#{p.title} * #{p.speaker_name} * #{p.bio}"}
+  end
+
+  desc "Generate html for website" do
+    task :website => :environment do
+      puts "<ul>"
+      Proposal.selected.each do |p|
+        speaker = if p.website?
+                    "<a href='#{p.website}'>#{p.speaker_name}</a>"
+                  else
+                    p.speaker_name
+                  end
+        puts "<li>#{p.title} &bull; #{speaker}</li>"
+      end
+      puts "</ul>"
+    end
+  end
 end

@@ -13,6 +13,8 @@
 #  hash_code    :string(255)      not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  selected     :boolean          default(FALSE), not null
+#  position     :integer          default(0), not null
 #
 
 require "digest/sha2"
@@ -26,7 +28,8 @@ class Proposal < ActiveRecord::Base
 
   before_create :save_hash_code
 
-  default_scope order(:created_at)
+  default_scope order(:position)
+  scope :selected, where(selected: true)
 
   def to_param
     persisted? ? hash_code : nil
@@ -35,6 +38,6 @@ class Proposal < ActiveRecord::Base
   private
 
   def save_hash_code
-    self.hash_code = Digest::SHA2.hexdigest("#{title} #{Time.now.to_s}").to_s.first(10)
+    self.hash_code = Digest::SHA2.hexdigest("#{title} #{Time.now.to_s} + #{rand}").to_s.first(10)
   end
 end

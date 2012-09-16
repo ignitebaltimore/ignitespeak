@@ -14,6 +14,7 @@ gem "simple_form"
 gem "bootstrap-sass"
 gem "table_for_collection"
 gem "domino"
+gem "annotate"
 
 group :assets do
   gem "sass-rails"

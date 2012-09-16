@@ -43,7 +43,9 @@ CREATE TABLE proposals (
     website character varying(255),
     hash_code character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    selected boolean DEFAULT false NOT NULL,
+    "position" integer DEFAULT 0 NOT NULL
 );
 
 
@@ -105,6 +107,13 @@ CREATE UNIQUE INDEX index_proposals_on_hash_code ON proposals USING btree (hash_
 
 
 --
+-- Name: index_proposals_on_position; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_proposals_on_position ON proposals USING btree ("position");
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -120,3 +129,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120702175322');
 INSERT INTO schema_migrations (version) VALUES ('20120702183557');
 
 INSERT INTO schema_migrations (version) VALUES ('20120704192838');
+
+INSERT INTO schema_migrations (version) VALUES ('20120916135701');
+
+INSERT INTO schema_migrations (version) VALUES ('20120916135924');
