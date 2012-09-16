@@ -23,4 +23,10 @@ namespace :proposal do
   task :emails => :environment do
     puts Proposal.all.map(&:email)
   end
+
+
+   desc "Show proposal title with email"
+   task :titles_with_email => :environment do
+     Proposal.order(:title).each {|p| puts "#{p.title} - #{p.email}" }
+   end
 end
