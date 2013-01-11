@@ -20,7 +20,7 @@ Spork.prefork do
 
   RSpec.configure do |config|
     config.include FactoryGirl::Syntax::Methods
-    config.include PageLoadAssertions, :type => :request
+    config.include PageLoadTest, :type => :feature
 
     config.mock_with :rspec
     config.use_transactional_fixtures = false
