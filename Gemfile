@@ -15,6 +15,7 @@ gem "bootstrap-sass"
 gem "table_for_collection"
 gem "domino"
 gem "annotate"
+gem "filepicker-rails"
 
 group :assets do
   gem "sass-rails"

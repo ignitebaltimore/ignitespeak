@@ -2,19 +2,20 @@
 #
 # Table name: proposals
 #
-#  id           :integer          not null, primary key
-#  speaker_name :string(255)      not null
-#  title        :string(255)      not null
-#  description  :text             not null
-#  email        :string(255)      not null
-#  phone        :string(255)
-#  bio          :text             not null
-#  website      :string(255)
-#  hash_code    :string(255)      not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  selected     :boolean          default(FALSE), not null
-#  position     :integer          default(0), not null
+#  id             :integer          not null, primary key
+#  speaker_name   :string(255)      not null
+#  title          :string(255)      not null
+#  description    :text             not null
+#  email          :string(255)      not null
+#  phone          :string(255)
+#  bio            :text             not null
+#  website        :string(255)
+#  hash_code      :string(255)      not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  selected       :boolean          default(FALSE), not null
+#  position       :integer          default(0), not null
+#  filepicker_url :string(255)
 #
 
 require 'spec_helper'

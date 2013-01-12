@@ -2,25 +2,26 @@
 #
 # Table name: proposals
 #
-#  id           :integer          not null, primary key
-#  speaker_name :string(255)      not null
-#  title        :string(255)      not null
-#  description  :text             not null
-#  email        :string(255)      not null
-#  phone        :string(255)
-#  bio          :text             not null
-#  website      :string(255)
-#  hash_code    :string(255)      not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  selected     :boolean          default(FALSE), not null
-#  position     :integer          default(0), not null
+#  id             :integer          not null, primary key
+#  speaker_name   :string(255)      not null
+#  title          :string(255)      not null
+#  description    :text             not null
+#  email          :string(255)      not null
+#  phone          :string(255)
+#  bio            :text             not null
+#  website        :string(255)
+#  hash_code      :string(255)      not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  selected       :boolean          default(FALSE), not null
+#  position       :integer          default(0), not null
+#  filepicker_url :string(255)
 #
 
 require "digest/sha2"
 
 class Proposal < ActiveRecord::Base
-  attr_accessible :bio, :description, :email, :phone, :title, :website, :speaker_name
+  attr_accessible :bio, :description, :email, :phone, :title, :website, :speaker_name, :filepicker_url
   validates_presence_of :title, :description, :email, :bio, :speaker_name, allow_blank: false
   validates :description, length: { maximum: 1000 }
   validates :bio, length: { maximum: 100 }

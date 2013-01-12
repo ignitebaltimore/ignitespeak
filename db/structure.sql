@@ -45,7 +45,8 @@ CREATE TABLE proposals (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     selected boolean DEFAULT false NOT NULL,
-    "position" integer DEFAULT 0 NOT NULL
+    "position" integer DEFAULT 0 NOT NULL,
+    filepicker_url character varying(255)
 );
 
 
@@ -81,7 +82,7 @@ CREATE TABLE schema_migrations (
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY proposals ALTER COLUMN id SET DEFAULT nextval('proposals_id_seq'::regclass);
+ALTER TABLE proposals ALTER COLUMN id SET DEFAULT nextval('proposals_id_seq'::regclass);
 
 
 --
@@ -133,3 +134,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120704192838');
 INSERT INTO schema_migrations (version) VALUES ('20120916135701');
 
 INSERT INTO schema_migrations (version) VALUES ('20120916135924');
+
+INSERT INTO schema_migrations (version) VALUES ('20130112162727');
