@@ -5,17 +5,22 @@ class ProposalsController < ApplicationController
 
   def index
     redirect_to new_proposal_url unless params[:auth] == AppContainer.auth_code
-    @proposals = Proposal.all
+    @proposals = Proposal.scoped
   end
 
   def new
     redirect_to closed_proposals_url if ENV["PROPOSALS_CLOSED"].present?
-    @title = "New Ignite Speaking Proposal"
+    @title = "Create a New Ignite Baltimore Speaking Proposal"
     @proposal = Proposal.new
   end
 
   def closed
     @title = "Ignite Proposals Closed"
+  end
+
+  def selected
+    @proposals = Proposal.selected
+    @title = "Selected Ignite Proposals, In Order"
   end
 
   def create

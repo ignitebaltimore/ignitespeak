@@ -1,6 +1,9 @@
 Ignitespeak::Application.routes.draw do
   resources :proposals do
-    get "closed", on: :collection
+    collection do
+      get "closed"
+      get "selected"
+    end
   end
 
   root to: "proposals#new"
