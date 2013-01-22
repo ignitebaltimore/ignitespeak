@@ -17,6 +17,7 @@ gem "domino"
 gem "annotate"
 gem "filepicker-rails"
 gem "exception_notification"
+gem "rails_admin"
 
 group :assets do
   gem "sass-rails"
@@ -44,3 +45,6 @@ end
 group :test do
   gem "factory_girl", require: false
 end
+
+
+gem "devise"
