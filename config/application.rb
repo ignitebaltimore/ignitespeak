@@ -71,5 +71,10 @@ module Ignitespeak
 
     config.action_mailer.default_url_options = { host: "speak.ignitebaltimore.com" }
     config.filepicker_rails.api_key = "AEdRoeejQtmEtvEo5FqZgz"
+
+    config.middleware.use ExceptionNotifier,
+      email_prefix: "[IGNITESPEAK ERROR] ",
+      sender_address: %{"Exception Notifier" <speak@ignitebaltimore.com>},
+      exception_recipients: %w{mike@subelsky.com}
   end
 end

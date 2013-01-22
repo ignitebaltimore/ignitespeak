@@ -16,6 +16,7 @@ gem "table_for_collection"
 gem "domino"
 gem "annotate"
 gem "filepicker-rails"
+gem "exception_notification"
 
 group :assets do
   gem "sass-rails"
