@@ -30,7 +30,8 @@ class Proposal < ActiveRecord::Base
   before_create :save_hash_code
 
   default_scope order(:position)
-  scope :selected, where(selected: true)
+  scope :selected, ->() { where(selected: true) }
+  scope :active, ->() { where("archived IS NOT true") }
 
   def to_param
     persisted? ? hash_code : nil

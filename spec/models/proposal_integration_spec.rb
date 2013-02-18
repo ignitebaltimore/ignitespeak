@@ -36,4 +36,16 @@ describe Proposal do
       Proposal.selected.should eq(selected.sort_by(&:position))
     end
   end
+
+  context "with archived and unarchived speakers" do
+    let!(:new_proposal) { create(:proposal,title: "Brand new!") }
+
+    before do
+      create_list(:proposal,3,:archived)
+    end
+
+    it ".active returns only the unarchived speakers" do
+      Proposal.active.should eq([new_proposal])
+    end
+  end
 end

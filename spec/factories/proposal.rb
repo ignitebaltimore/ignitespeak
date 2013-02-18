@@ -9,5 +9,9 @@ FactoryGirl.define do
     trait :selected do
       selected true
     end
+
+    trait :archived do
+      archived true
+    end
   end
 end
