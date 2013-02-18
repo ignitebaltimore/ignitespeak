@@ -1,7 +1,12 @@
 namespace :proposal do
-  desc "Generate voting email"
+  desc "Archive active proposals"
+  task :archive => :environment do
+    Proposal.update_all("archived = true")
+  end
+
+  desc "Generate voting email for active proposals"
   task :vote_prep => :environment do
-    proposals = Proposal.order(:title)
+    proposals = Proposal.active.order(:title)
     mailer = ProposalMailer.all_proposals(proposals)
     mailer.deliver!
 
@@ -21,23 +26,23 @@ namespace :proposal do
 
   desc "Get email addresses of active proposals"
   task :emails => :environment do
-    puts Proposal.all.map(&:email)
+    puts Proposal.active.map(&:email)
   end
 
   desc "Show proposal title with email"
   task :titles_with_email => :environment do
-    Proposal.order(:title).each {|p| puts "#{p.title} - #{p.email}" }
+    Proposal.active.order(:title).each {|p| puts "#{p.title} - #{p.email}" }
   end
 
   desc "Show proposal title with name and bio"
   task :program_info => :environment do
-    Proposal.selected.each {|p| puts "#{p.title} * #{p.speaker_name} * #{p.bio}"}
+    Proposal.active.selected.each {|p| puts "#{p.title} * #{p.speaker_name} * #{p.bio}"}
   end
 
   desc "Generate html for website" do
     task :website => :environment do
       puts "<ul>"
-      Proposal.selected.each do |p|
+      Proposal.active.selected.each do |p|
         speaker = if p.website?
                     "<a href='#{p.website}'>#{p.speaker_name}</a>"
                   else
