@@ -46,7 +46,8 @@ CREATE TABLE proposals (
     updated_at timestamp without time zone NOT NULL,
     selected boolean DEFAULT false NOT NULL,
     "position" integer DEFAULT 0 NOT NULL,
-    filepicker_url character varying(255)
+    filepicker_url character varying(255),
+    archived boolean DEFAULT false NOT NULL
 );
 
 
@@ -157,21 +158,21 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY proposals ALTER COLUMN id SET DEFAULT nextval('proposals_id_seq'::regclass);
+ALTER TABLE proposals ALTER COLUMN id SET DEFAULT nextval('proposals_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY rails_admin_histories ALTER COLUMN id SET DEFAULT nextval('rails_admin_histories_id_seq'::regclass);
+ALTER TABLE rails_admin_histories ALTER COLUMN id SET DEFAULT nextval('rails_admin_histories_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
@@ -259,3 +260,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130112162727');
 INSERT INTO schema_migrations (version) VALUES ('20130122215403');
 
 INSERT INTO schema_migrations (version) VALUES ('20130122215825');
+
+INSERT INTO schema_migrations (version) VALUES ('20130218170602');
