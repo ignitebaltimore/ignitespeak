@@ -43,10 +43,9 @@ class Proposal < ActiveRecord::Base
       field :id
       field :title
       field :speaker_name
-      field :email
       field :created_at
       field :selected
-      field :position
+      field :archived
 
       sort_by :created_at           # Sort column (default is primary key)
       sort_reverse true     # Sort direction (default is true for primary key, last created first)
