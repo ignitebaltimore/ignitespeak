@@ -16,6 +16,7 @@
 #  selected       :boolean          default(FALSE), not null
 #  position       :integer          default(0), not null
 #  filepicker_url :string(255)
+#  archived       :boolean          default(FALSE), not null
 #
 
 require "digest/sha2"
