@@ -37,6 +37,21 @@ class Proposal < ActiveRecord::Base
     persisted? ? hash_code : nil
   end
 
+  rails_admin do
+    list do
+      field :id
+      field :title
+      field :speaker_name
+      field :email
+      field :created_at
+      field :selected
+      field :position
+
+      sort_by :created_at           # Sort column (default is primary key)
+      sort_reverse true     # Sort direction (default is true for primary key, last created first)
+    end
+  end
+
   private
 
   def save_hash_code
