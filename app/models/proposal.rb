@@ -38,12 +38,17 @@ class Proposal < ActiveRecord::Base
     persisted? ? hash_code : nil
   end
 
+  def nice_title
+    "#{title} - #{speaker_name}"
+  end
+
   rails_admin do
     list do
-      field :id
-      field :title
-      field :speaker_name
-      field :created_at
+      field :nice_title
+      field :email
+      field :created_at do
+        strftime_format "%m-%d-%Y"
+      end
       field :selected
       field :archived
 
