@@ -19,7 +19,7 @@ class ProposalsController < ApplicationController
   end
 
   def selected
-    @proposals = Proposal.selected
+    @proposals = Proposal.selected.active
     @title = "Selected Ignite Proposals, In Order"
   end
 
