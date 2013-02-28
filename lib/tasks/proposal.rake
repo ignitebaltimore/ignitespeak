@@ -39,19 +39,18 @@ namespace :proposal do
     Proposal.active.selected.each {|p| puts "#{p.title} * #{p.speaker_name} * #{p.bio}"}
   end
 
-  desc "Generate html for website" do
-    task :website => :environment do
-      puts "<ul>"
-      Proposal.active.selected.each do |p|
-        speaker = if p.website?
-                    "<a href='#{p.website}'>#{p.speaker_name}</a>"
-                  else
-                    p.speaker_name
-                  end
-        puts "<li>#{p.title} &bull; #{speaker}</li>"
-      end
-      puts "</ul>"
+  desc "Generate html for website"
+  task :website => :environment do
+    puts "<ul>"
+    Proposal.active.selected.each do |p|
+      speaker = if p.website?
+                  "<a href='#{p.website}'>#{p.speaker_name}</a>"
+                else
+                  p.speaker_name
+                end
+      puts "<li>#{p.title} &bull; #{speaker}</li>"
     end
+    puts "</ul>"
   end
 end
 
@@ -63,11 +62,11 @@ end
 #names = lines.map { |l| l.split(/ - /)[1] }
 
 #names.each_with_index do |name,index|
-  ## TODO make this only look at new proposals, not archived ones
-  #p = Proposal.find_by_speaker_name(name)
+## TODO make this only look at new proposals, not archived ones
+#p = Proposal.find_by_speaker_name(name)
 
-  #raise "could not find speaker name #{name}, quitting" unless p
-  #p.position = index
-  #p.selected = true
-  #p.save!
+#raise "could not find speaker name #{name}, quitting" unless p
+#p.position = index
+#p.selected = true
+#p.save!
 #end
