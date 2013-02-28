@@ -22,7 +22,7 @@
 require "digest/sha2"
 
 class Proposal < ActiveRecord::Base
-  attr_accessible :bio, :description, :email, :phone, :title, :website, :speaker_name, :filepicker_url, :selected, :archived, :hash_code
+  attr_accessible :bio, :description, :email, :phone, :title, :website, :speaker_name, :filepicker_url, :selected, :archived, :hash_code, :position
   validates_presence_of :title, :description, :email, :bio, :speaker_name, allow_blank: false
   validates :description, length: { maximum: 1000 }
   validates :bio, length: { maximum: 100 }
