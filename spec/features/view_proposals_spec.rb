@@ -8,6 +8,6 @@ describe "View selected proposals" do
   it "shows correct proposals in order" do
     visit selected_proposals_path
     Dom::Proposal.count.should eq(2)
-    Dom::Proposal.all.map(&:title).should eq(%w(A B))
+    Dom::Proposal.all.map { |p| p.title[0] }.should eq(%w(A B))
   end
 end

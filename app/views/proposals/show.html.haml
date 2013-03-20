@@ -1,3 +1,7 @@
+.row
+  = link_to "Change Proposal", edit_proposal_url(id: proposal.hash_code), class: "btn btn-primary span2"
+  .span1
+  = button_to "Delete Proposal", proposal_url(id: proposal.hash_code), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger span2"
 .row.proposal
   %h2.span12 Title
   .span12.title= proposal.title
@@ -14,27 +18,16 @@
   %h2.span12 Speaker Website
   .span12.website= proposal.website
 
-%br
-
 - if proposal.filepicker_url?
   .row
-    %h3.span12 We have received your presentation, thanks! You can upload a replacement copy below
+    .alert.alert-success.span12
+      We have received your presentation, thanks! You can upload a replacement copy below.
 
 - if proposal.selected?
   .row
-    %h2.span12 Upload Your Presentation
+    %h2.span12(name="upload") Upload Your Presentation
   .row
     .span12
       = simple_form_for proposal do |f|
-        = f.filepicker_field :filepicker_url, button_text: "Click here to select your presentation file", button_class: "btn"
-        %br
-        %br
-        .actions
-          = f.submit "Click here to upload your presentation file"
-
-
-.row
-  .span2
-    = link_to "Edit This Proposal", edit_proposal_url(id: proposal.hash_code), class: "btn btn-primary"
-  .span2
-    = button_to "Delete This Proposal", proposal_url(id: proposal.hash_code), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
+        = f.filepicker_field :filepicker_url, button_text: "Select your presentation file", button_class: "btn"
+        = f.submit "Upload", class: "btn btn-info"

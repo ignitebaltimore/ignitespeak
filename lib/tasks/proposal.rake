@@ -52,6 +52,13 @@ namespace :proposal do
     end
     puts "</ul>"
   end
+
+  desc "Generate upload URLs"
+  task :urls => :environment do
+    Proposal.active.selected.each do |p|
+      puts "#{p.email}  -  http://speak.ignitebaltimore.com/proposals/#{p.hash_code}"
+    end ; nil
+  end
 end
 
 #lines = <<-LINES

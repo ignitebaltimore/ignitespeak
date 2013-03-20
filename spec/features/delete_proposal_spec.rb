@@ -5,7 +5,7 @@ describe do
 
   it "Users can delete proposals" do
     visit proposal_url(proposal)
-    click_button "Delete This Proposal"
+    click_button "Delete Proposal"
     should_load "/"
     Proposal.count.should == 0
     Dom::Flash::Success.all.should_not be_empty
