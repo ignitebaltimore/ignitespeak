@@ -24,7 +24,7 @@ class ProposalsController < ApplicationController
   end
 
   def create
-    @proposal = Proposal.create(params[:proposal])
+    @proposal = Proposal.create(proposal_params)
     if @proposal.valid?
       flash[:success] = "We have received your proposal. Check #{@proposal.email} for further instructions."
       ProposalMailer.confirmed_email(@proposal).deliver
@@ -44,7 +44,7 @@ class ProposalsController < ApplicationController
   end
 
   def update
-    proposal.update_attributes(params[:proposal])
+    proposal.update_attributes(proposal_params)
     if proposal.valid?
       flash[:success] = "Your proposal was updated."
       redirect_to proposal
@@ -71,5 +71,11 @@ class ProposalsController < ApplicationController
       flash[:error] = "We could not find that proposal"
       redirect_to root_url
     end
+  end
+
+  private
+
+  def proposal_params
+    params.require(:proposal).permit(:bio,:description,:email,:phone,:title,:website,:speaker_name,:filepicker_url,:selected,:archived,:hash_code,:position)
   end
 end

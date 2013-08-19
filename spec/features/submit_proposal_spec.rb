@@ -24,7 +24,7 @@ describe do
     Dom::Flash::Success.all.should_not be_empty
     proposal = Dom::Proposal.find_by_title(title)
     proposal.should_not be_nil
-    proposal.speaker_name.should == speaker_name
+    proposal.speakername.should == speaker_name
     proposal.description.should == description
     proposal.email.should == email
     proposal.bio.should == bio

@@ -2,7 +2,7 @@ module Dom
   class Proposal < Domino
     selector '.proposal'
     attribute :title
-    attribute :speaker_name
+    attribute :speakername
     attribute :description
     attribute :email
     attribute :bio

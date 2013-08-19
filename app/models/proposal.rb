@@ -22,7 +22,6 @@
 require "digest/sha2"
 
 class Proposal < ActiveRecord::Base
-  attr_accessible :bio, :description, :email, :phone, :title, :website, :speaker_name, :filepicker_url, :selected, :archived, :hash_code, :position
   validates_presence_of :title, :description, :email, :bio, :speaker_name, allow_blank: false
   validates :description, length: { maximum: 1000 }
   validates :bio, length: { maximum: 100 }
@@ -30,7 +29,7 @@ class Proposal < ActiveRecord::Base
 
   before_create :save_hash_code
 
-  default_scope order(:position)
+  default_scope ->() { order(:position) }
   scope :selected, ->() { where(selected: true) }
   scope :active, ->() { where("archived IS NOT true") }
 

@@ -3,14 +3,14 @@ require "spec_helper"
 describe Proposal do
   context "at a certain time of day with a certain random seed" do
     before do
-      Time.stub!(:now).and_return(Time.new(2012,7,3,9,25))
+      Time.stub(now: Time.new(2012,7,3,9,25))
       srand(100)
     end
 
     it "creates a hash code upon creation" do
       proposal = build(:proposal,hash_code: nil,title: "A Tale of Two Cities")
       proposal.save!
-      proposal.hash_code.should == "f6ee1a1f4d"
+      proposal.hash_code.should == "1f9781bf79"
     end
   end
 
