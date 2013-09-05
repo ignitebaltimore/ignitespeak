@@ -56,7 +56,7 @@ module Ignitespeak
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = '1.1'
 
     # recommended in Devise docs, for deploying 3.1 apps to Heroku
     # config.assets.initialize_on_precompile = false
