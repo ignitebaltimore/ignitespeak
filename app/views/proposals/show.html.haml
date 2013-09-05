@@ -20,14 +20,28 @@
 
 - if proposal.filepicker_url?
   .row
-    .alert.alert-success.span12
-      We have received your presentation, thanks! You can upload a replacement copy below.
+    %h2.span12 Your Proposal Has Been Received
+  .row
+    .span4
+      %embed(name="plugin" src="#{proposal.filepicker_url}/convert?w=200&fit=scale&format=png")
+  .row
+    %p.span12
+      %em You can upload a replacement below, if needed.
 
 - if proposal.selected?
   .row
     %h2.span12(name="upload") Upload Your Presentation
   .row
-    .span12
-      = simple_form_for proposal do |f|
-        = f.filepicker_field :filepicker_url, button_text: "Select your presentation file", button_class: "btn"
-        = f.submit "Upload", class: "btn btn-info"
+    %p.span12
+      Please read our <a href="http://www.ignitebaltimore.com/speaking">proposal guidelines</a> which include instructions on the file format.
+    %p.span12
+      %strong We strongly encourage you to upload your files in PDF format. We cannot guarantee the image quality if you provide us with another format.
+
+  .row
+    = form_for proposal do |f|
+      .span12
+        %input(type="filepicker" name="proposal[filepicker_url]" onchange="$('form.edit_proposal').submit();"){ data: { fp_button_text: "Click here to upload your presentation", fp_button_class: "btn btn-primary", fp_container: "modal", fp_multiple: false } }
+
+- content_for :bottom do
+  :javascript
+    function submitForm(fpfiles) { console.info(fpfiles) }

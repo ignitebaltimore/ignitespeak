@@ -27,4 +27,6 @@
 
   = javascript_include_tag "application"
   = filepicker_js_include_tag
+  :javascript
+    filepicker.setKey('#{ENV['FILEPICKER_API_KEY']}')
   = yield(:bottom)

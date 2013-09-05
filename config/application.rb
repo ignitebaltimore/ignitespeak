@@ -63,7 +63,6 @@ module Ignitespeak
     config.assets.initialize_on_precompile = false
 
     config.action_mailer.default_url_options = { host: "speak.ignitebaltimore.com" }
-    config.filepicker_rails.api_key = "AEdRoeejQtmEtvEo5FqZgz"
 
     #config.middleware.use ExceptionNotifier,
       #email_prefix: "[IGNITESPEAK ERROR] ",
