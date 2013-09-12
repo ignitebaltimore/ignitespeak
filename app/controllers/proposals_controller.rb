@@ -65,7 +65,7 @@ class ProposalsController < ApplicationController
   attr_reader :proposal, :proposals
 
   def find_proposal
-    @proposal = Proposal.where(archived: false).find_by_hash_code(params[:id])
+    @proposal = Proposal.active.find_by_hash_code(params[:id])
 
     if @proposal.nil?
       flash[:error] = "We could not find that proposal"
