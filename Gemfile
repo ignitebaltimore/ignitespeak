@@ -14,7 +14,6 @@ gem "simple_form", "~> 3.0.0"
 gem "bootstrap-sass"
 gem "table_for_collection"
 gem "domino"
-gem "annotate"
 gem "filepicker-rails"
 gem "exception_notification"
 gem "rails_admin"
@@ -29,6 +28,7 @@ end
 group :development do
   gem "factory_girl_rails"
   gem "foreman"
+  gem "annotate"
 end
 
 group :development, :test do
