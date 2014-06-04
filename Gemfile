@@ -36,9 +36,9 @@ group :development, :test do
   gem "capybara"
   gem "shoulda-matchers"
   gem "launchy"
-  gem "rspec-instafail"
 end
 
 group :test do
   gem "factory_girl_rails"
+  gem "rspec-instafail"
 end
