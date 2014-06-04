@@ -1,67 +1,50 @@
 require "rubygems"
-require "spork"
 
-Spork.prefork do
-  ENV["RAILS_ENV"] ||= 'test'
-  require "rails/application"
-  # https://github.com/timcharper/spork/wiki/Spork.trap_method-Jujutsu
-  Spork.trap_method(Rails::Application, :reload_routes!)
-  require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
-  require 'shoulda/matchers/integrations/rspec'
-  require "factory_girl"
-  require 'capybara/rails'
-  require 'capybara/rspec'
-  require "subelsky_power_tools/page_load_assertions"
-  require "subelsky_power_tools/controller_shared_behavior"
-  require "pp"
+ENV["RAILS_ENV"] ||= 'test'
+ENV["SECRET_TOKEN"] = "TEST123"
+ENV["DEVISE_SECRET_KEY"] = "TEST_DEVISE_123"
+require "rails/application"
+# https://github.com/timcharper/spork/wiki/Spork.trap_method-Jujutsu
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'shoulda/matchers/integrations/rspec'
+require "factory_girl"
+require 'capybara/rails'
+require 'capybara/rspec'
+require "subelsky_power_tools/page_load_assertions"
+require "subelsky_power_tools/controller_shared_behavior"
+require "pp"
 
-  Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
-  RSpec.configure do |config|
-    config.include FactoryGirl::Syntax::Methods
-    config.include PageLoadTest, :type => :feature
+RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
+  config.include PageLoadTest, :type => :feature
+  config.infer_spec_type_from_file_location!
+  config.use_transactional_fixtures = false
 
-    config.mock_with :rspec
-    config.use_transactional_fixtures = false
-
-    last_gc_run = Time.now
-
-    config.before :suite do
-      DatabaseCleaner.clean_with :truncation
-      DatabaseCleaner.strategy = :truncation
-    end
-
-    config.before(:each) do
-      GC.disable
-    end
-
-    config.before(:each) do
-      DatabaseCleaner.start
-    end
-
-    config.after(:each) do
-      DatabaseCleaner.clean
-    end
-
-    config.after(:each) do
-      if Time.now - last_gc_run > 2.0
-        GC.enable
-        GC.start
-        last_gc_run = Time.now
-      end
-    end
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
   end
 
-  require 'rspec/expectations'
-  require 'mime/types'
-end
+  config.mock_with :rspec do |c|
+    c.syntax = :expect
+  end
 
-Spork.each_run do
-  FactoryGirl.definition_file_paths = [
-    File.join(Rails.root, 'spec', 'factories')
-  ]
+  config.before :suite do
+    DatabaseCleaner.clean_with :truncation
+    DatabaseCleaner.strategy = :truncation
+  end
 
-  FactoryGirl.find_definitions
-  load "spec/support/dominos.rb"
+  config.before(:each) do
+    GC.disable
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end

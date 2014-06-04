@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -245,6 +246,8 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
+SET search_path TO "$user",public;
+
 INSERT INTO schema_migrations (version) VALUES ('20120702175322');
 
 INSERT INTO schema_migrations (version) VALUES ('20120702183557');
@@ -262,3 +265,4 @@ INSERT INTO schema_migrations (version) VALUES ('20130122215403');
 INSERT INTO schema_migrations (version) VALUES ('20130122215825');
 
 INSERT INTO schema_migrations (version) VALUES ('20130218170602');
+

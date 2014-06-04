@@ -3,14 +3,14 @@ require "spec_helper"
 describe Proposal do
   context "at a certain time of day with a certain random seed" do
     before do
-      Time.stub(now: Time.new(2012,7,3,9,25))
+      allow(Time).to receive(:now) { Time.new(2012,7,3,9,25) }
       srand(100)
     end
 
     it "creates a hash code upon creation" do
       proposal = build(:proposal,hash_code: nil,title: "A Tale of Two Cities")
       proposal.save!
-      proposal.hash_code.should == "1f9781bf79"
+      expect(proposal.hash_code).to eq("f6ee1a1f4d")
     end
   end
 
@@ -33,7 +33,7 @@ describe Proposal do
     before { create(:proposal,title: "Not picked :-(") }
 
     it "returns only the selected speakers, in order" do
-      Proposal.selected.should eq(selected.sort_by(&:position))
+      expect(Proposal.selected).to eq(selected.sort_by(&:position))
     end
   end
 
@@ -45,7 +45,7 @@ describe Proposal do
     end
 
     it ".active returns only the unarchived speakers" do
-      Proposal.active.should eq([new_proposal])
+      expect(Proposal.active).to eq([new_proposal])
     end
   end
 end
