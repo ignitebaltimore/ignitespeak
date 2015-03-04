@@ -12,8 +12,15 @@ RailsAdmin.config do |config|
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
   # RailsAdmin may need a way to know who the current user is]
-  config.current_user_method { current_user } # auto-generated
+  #config.current_user_method { current_user } # auto-generated
 
+  config.authenticate_with do
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV.fetch("ADMIN_USERNAME") && password == ENV.fetch("ADMIN_PASSWORD")
+    end
+  end
+
+  # Other config stuff should go here
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
 
