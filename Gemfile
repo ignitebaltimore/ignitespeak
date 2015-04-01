@@ -17,7 +17,7 @@ gem "domino"
 gem "filepicker-rails"
 gem "exception_notification"
 gem "rails_admin"
-gem "dotenv"
+gem "dotenv-rails"
 
 group :assets do
   gem "sass-rails"
