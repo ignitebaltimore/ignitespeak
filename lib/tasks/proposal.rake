@@ -1,4 +1,22 @@
 namespace :proposal do
+  desc "Download active proposal files"
+  task :download => :environment do
+    proposals = Proposal.selected.active.order(:position)
+
+    proposals.each do |proposal|
+      puts proposal.speaker_name
+      puts proposal.title
+      puts
+    end
+
+    proposals.each do |proposal|
+      next unless proposal.filepicker_url
+      num = format "%02d", proposal.position
+      name = proposal.speaker_name.underscore.gsub(/\s+/,"_")
+      puts "curl -o #{num}_#{name}.pdf #{proposal.filepicker_url} &&"
+    end
+  end
+
   desc "Archive active proposals"
   task :archive => :environment do
     Proposal.update_all("archived = true")
