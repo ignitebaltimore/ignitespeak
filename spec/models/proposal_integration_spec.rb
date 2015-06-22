@@ -19,7 +19,10 @@ describe Proposal do
       first = create(:proposal,title: "A title")
       second = create(:proposal,title: "Another title")
       second.hash_code = first.hash_code
-      expect { second.save! }.to raise_error
+
+      expect {
+        second.save!
+      }.to raise_error(ActiveRecord::StatementInvalid)
     end
   end
 

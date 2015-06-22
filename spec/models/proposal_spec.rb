@@ -19,14 +19,12 @@
 #  archived       :boolean          default(FALSE), not null
 #
 
-require 'spec_helper'
-
-describe Proposal do
-  it { should ensure_length_of(:speaker_name).is_at_most(254) }
-  it { should ensure_length_of(:title).is_at_most(254) }
-  it { should ensure_length_of(:email).is_at_most(254) }
-  it { should ensure_length_of(:phone).is_at_most(254) }
-  it { should ensure_length_of(:website).is_at_most(254) }
-  it { should ensure_length_of(:description).is_at_most(1000) }
-  it { should ensure_length_of(:bio).is_at_most(100) }
+RSpec.describe Proposal do
+  it { should validate_length_of(:speaker_name).is_at_most(254) }
+  it { should validate_length_of(:title).is_at_most(254) }
+  it { should validate_length_of(:email).is_at_most(254) }
+  it { should validate_length_of(:phone).is_at_most(254) }
+  it { should validate_length_of(:website).is_at_most(254) }
+  it { should validate_length_of(:description).is_at_most(1000) }
+  it { should validate_length_of(:bio).is_at_most(100) }
 end
