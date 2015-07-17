@@ -1,5 +1,5 @@
 {
-  "name": "Ignitespeak"
-  "description": "System for collecting Ignite speaker proposals."
+  "name": "Ignitespeak",
+  "description": "System for collecting Ignite speaker proposals.",
   "repository": "https://github.com/ignitebaltimore/ignitespeak"
 }
