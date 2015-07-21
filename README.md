@@ -9,7 +9,8 @@ Build Status
 
 Requirements
 ============
-Ruby 2.0
+Ruby 2.2+
+Postgres 9.0+
 
 Setup Instructions
 ==================
@@ -29,6 +30,7 @@ Add a proposal to the database
 
 To get your own ignitespeak app up and running, click the button  
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 
 Contributors
 ============
