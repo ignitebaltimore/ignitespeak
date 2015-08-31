@@ -1,7 +1,9 @@
 ignitespeak
 ===========
 
-System for collecting Ignite speaker proposals.
+Speaker and speaking proposal management system for [Ignite Baltimore](http://www.ignitebaltimore.com/). We use this app to accept speaking proposals and to produce various documents needed to run each event. This is also the hub where speakers upload their presentations. The app currently runs at [speak.ignitebaltimore.com](http://speak.ignitebaltimore.com/)
+
+We'd like to expand it to be useful for all [Ignite projects worldwide](http://igniteshow.com/). Check out our [Issues page](https://github.com/ignitebaltimore/ignitespeak/issues) for examples of what needs to happen. Join us!
 
 Build Status
 ============
