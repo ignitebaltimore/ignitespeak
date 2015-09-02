@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: ignitespeak_development
   pool: 5
-  username: postgres
+  username: Strawman
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -43,5 +43,5 @@ test:
   encoding: unicode
   database: ignitespeak_test
   pool: 5
-  username: postgres
+  username: Strawman
   password:
