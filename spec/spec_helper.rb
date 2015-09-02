@@ -1,6 +1,6 @@
-require "rubygems"
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
+require "rubygems"
 
 ENV["RAILS_ENV"] ||= 'test'
 ENV["SECRET_TOKEN"] = "TEST123"
