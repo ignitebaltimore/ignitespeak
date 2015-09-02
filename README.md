@@ -21,7 +21,7 @@ Setup Instructions
 You can edit this file to have your own secret token and login information.
 
 Open config/database.yml and configure  
-```username: subelsky```  
+```username: postgres```  
 to be the username in your environment
 
 Setup the database in your environment
