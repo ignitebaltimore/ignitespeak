@@ -13,7 +13,7 @@ Badges:
 =======
 [![Code Climate](https://codeclimate.com/github/trendwithin/ignitespeak/badges/gpa.svg)](https://codeclimate.com/github/trendwithin/ignitespeak)
 
-[![Test Coverage](https://codeclimate.com/github/trendwithin/ignitespeak/badges/coverage.svg)](https://codeclimate.com/github/trendwithin/ignitespeak/coverage)[ ![Code Ship Status for Ignite](https://codeship.com/projects/45ea7ba0-3359-0133-3797-32e25a7c007a/status?branch=master)]
+[![Test Coverage](https://codeclimate.com/github/trendwithin/ignitespeak/badges/coverage.svg)](https://codeclimate.com/github/trendwithin/ignitespeak/coverage)
 
 [ ![Codeship Status for IgniteSpeak](https://codeship.com/projects/45ea7ba0-3359-0133-3797-32e25a7c007a/status?branch=master)](https://codeship.com/projects/100184)
 
