@@ -42,3 +42,5 @@ group :test do
   gem "factory_girl_rails"
   gem "rspec-instafail"
 end
+
+gem "codeclimate-test-reporter", group: :test, require: nil
