@@ -9,6 +9,14 @@ Build Status
 ============
 * TODO add some public CI build status graphics a la http://docs.travis-ci.com/user/status-images/
 
+Badges:
+=======
+[![Code Climate](https://codeclimate.com/github/trendwithin/ignitespeak/badges/gpa.svg)](https://codeclimate.com/github/trendwithin/ignitespeak)
+
+[![Test Coverage](https://codeclimate.com/github/trendwithin/ignitespeak/badges/coverage.svg)](https://codeclimate.com/github/trendwithin/ignitespeak/coverage)
+
+[ ![Codeship Status for IgniteSpeak](https://codeship.com/projects/45ea7ba0-3359-0133-3797-32e25a7c007a/status?branch=master)](https://codeship.com/projects/100184)
+
 Requirements
 ============
 Ruby 2.2+
@@ -17,7 +25,7 @@ Postgres 9.0+
 Setup Instructions
 ==================
 
-``` cp sample.env .env ```  
+``` cp sample.env .env ```
 You can edit this file to have your own secret token and login information.
 
 Open config/database.yml and configure  
@@ -30,7 +38,7 @@ Setup the database in your environment
 Add a proposal to the database
 ```rake db:seed```
 
-To get your own ignitespeak app up and running, click the button  
+To get your own ignitespeak app up and running, click the button
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 
