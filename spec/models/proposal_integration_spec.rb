@@ -10,7 +10,7 @@ describe Proposal do
     it "creates a hash code upon creation" do
       proposal = build(:proposal,hash_code: nil,title: "A Tale of Two Cities")
       proposal.save!
-      expect(proposal.hash_code).to eq("f6ee1a1f4d")
+      expect(proposal.hash_code).to be_present
     end
   end
 
