@@ -28,7 +28,17 @@ Setup
 git clone https://github.com/ignitebaltimore/ignitespeak.git
 cd ignitespeak
 bin/setup
+rake spec # if these tests pass, you're good to go
 ```
+
+Development Environment
+=======================
+```bash
+rails console # opens an interactive console where you can interact with the Proposal model
+foreman start # boots up the app, which you can access at http://127.0.0.1:5000/
+```
+To sign into the admin system, visit `http://127.0.0.1:5000/admin`. You'll need to give the username and password
+specified in your `.env` file (which is probably "test" for both).
 
 Deployment
 ==========
