@@ -18,3 +18,4 @@ _yardoc
 doc/
 .env
 secrets.yml
+/db/*.sqlite3

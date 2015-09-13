@@ -26,7 +26,4 @@ Ignitespeak::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  config.active_record.schema_format = :sql
-  config.logger = Logger.new(STDOUT)
 end

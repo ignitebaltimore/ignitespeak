@@ -31,7 +31,7 @@ class Proposal < ActiveRecord::Base
 
   default_scope ->() { order(:position) }
   scope :selected, ->() { where(selected: true) }
-  scope :active, ->() { where("archived IS NOT true") }
+  scope :active, ->() { where(archived: false) }
 
   def to_param
     persisted? ? hash_code : nil

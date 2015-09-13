@@ -20,24 +20,18 @@ Badges:
 Requirements
 ============
 Ruby 2.2+
-Postgres 9.0+
 
-Setup Instructions
-==================
+Setup
+=====
+```bash
+# replace 'ignitebaltimore' with your own github name if working on a branch
+git clone https://github.com/ignitebaltimore/ignitespeak.git
+cd ignitespeak
+bin/setup
+```
 
-``` cp sample.env .env ```
-You can edit this file to have your own secret token and login information.
-
-Open config/database.yml and configure  
-```username: postgres```  
-to be the username in your environment
-
-Setup the database in your environment
-```rake db:setup```
-
-Add a proposal to the database
-```rake db:seed```
-
+Deployment
+==========
 To get your own ignitespeak app up and running, click the button
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 

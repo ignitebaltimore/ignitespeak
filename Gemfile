@@ -2,11 +2,9 @@ source "https://rubygems.org"
 ruby "2.2.2"
 
 gem "rails", ["> 4.0","< 4.1"]
-gem "pg"
 gem "jquery-rails"
 gem "unicorn"
 gem "haml-rails"
-gem "Empact-sexy_pg_constraints", require: "sexy_pg_constraints"
 gem "foreigner"
 gem "subelsky_power_tools"
 gem "dim"
@@ -18,6 +16,7 @@ gem "filepicker-rails"
 gem "exception_notification"
 gem "rails_admin"
 gem "dotenv-rails"
+gem "sqlite3", require: true
 
 group :assets do
   gem "sass-rails"
@@ -41,6 +40,14 @@ end
 group :test do
   gem "factory_girl_rails"
   gem "rspec-instafail"
+  gem "codeclimate-test-reporter", require: nil
 end
 
-gem "codeclimate-test-reporter", group: :test, require: nil
+group :production do
+  # Right now we use Postgres on Heroku, but we switched the dev/test environment
+  # to sqlite to make things easier for contributors. Eventually we can migrate
+  # production over, as this is not a high-performance app by any means. sqlite
+  # is more than adequate.
+  gem "pg"
+  gem "rails_12factor"
+end
