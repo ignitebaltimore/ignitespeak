@@ -19,13 +19,31 @@ Badges:
 
 Requirements
 ============
-Ruby 2.2+
+* Git
+* Ruby 2.2
+* [Bundler](http://bundler.io/) gem (see below)
+
+There's a lot of ways to install Git Ruby. Jumpstart Labs has [a good example](http://tutorials.jumpstartlab.com/topics/environment/environment.html)
+but there are many others.
 
 Setup
 =====
+1) Fork the `ignitebaltimore/ignitespeak` repository to your own github account following [these instructions](https://help.github.com/articles/fork-a-repo/).
+Make sure you also create an [upstream remote](https://help.github.com/articles/configuring-a-remote-for-a-fork/) so you can get
+changes made to the original app.
+
+2) Open a terminal on your computer and run theses commands (I'm assuming you already have Ruby installed):
+
 ```bash
-# replace 'ignitebaltimore' with your own github name if working on a branch
-git clone https://github.com/ignitebaltimore/ignitespeak.git
+gem install bundler # so you can get all the other gems the app depends on
+```
+
+3) Create a copy of the ignitespeak on your development machine (I'm assu
+
+```bash
+# replace '#############' with your own github name
+git clone https://github.com/#########/ignitespeak.git
+git remote add upstream https://github.com/ignitebaltimore/ignitespeak.git
 cd ignitespeak
 bin/setup
 rake spec # if these tests pass, you're good to go
@@ -43,6 +61,7 @@ specified in your `.env` file (which is probably "test" for both).
 Deployment
 ==========
 To get your own ignitespeak app up and running, click the button
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 
