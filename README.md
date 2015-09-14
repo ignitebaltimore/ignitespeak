@@ -19,11 +19,11 @@ Badges:
 
 Requirements
 ============
-* Git
-* Ruby 2.2
+* [Git](https://git-scm.com/)
+* [Ruby 2.2](https://www.ruby-lang.org/)
 * [Bundler](http://bundler.io/) gem (see below)
 
-There's a lot of ways to install Git Ruby. Jumpstart Labs has [a good example](http://tutorials.jumpstartlab.com/topics/environment/environment.html)
+There's a lot of ways to install Git and Ruby. Jumpstart Labs has [a good example](http://tutorials.jumpstartlab.com/topics/environment/environment.html)
 but there are many others.
 
 Setup
