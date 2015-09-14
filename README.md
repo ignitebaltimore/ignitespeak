@@ -58,6 +58,12 @@ foreman start # boots up the app, which you can access at http://127.0.0.1:5000/
 To sign into the admin system, visit `http://127.0.0.1:5000/admin`. You'll need to give the username and password
 specified in your `.env` file (which is probably "test" for both).
 
+Orientation Video
+=================
+(sorry about the quality, I will re-record it soon)
+
+[![ignitespeak orientation video](http://img.youtube.com/vi/G1KhFPjjuns/3.jpg)](http://www.youtube.com/watch?v=G1KhFPjjuns)
+
 Deployment
 ==========
 To get your own ignitespeak app up and running, click the button
