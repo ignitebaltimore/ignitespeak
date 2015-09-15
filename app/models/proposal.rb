@@ -25,7 +25,10 @@ class Proposal < ActiveRecord::Base
   validates_presence_of :title, :description, :email, :bio, :speaker_name, allow_blank: false
   validates :description, length: { maximum: 1000 }
   validates :bio, length: { maximum: 100 }
-  validates :speaker_name, :title, :email, :phone, :website, length: { maximum: 254 }
+  validates :speaker_name, :title, :email, :phone, length: { maximum: 254 }
+  validates :website, :allow_blank => true, 
+	:format => { :with => /\A(http|https):\/\/[a-z0-9\-\.]+\Z/},
+	length: { maximum: 254 }
 
   before_create :save_hash_code
 
