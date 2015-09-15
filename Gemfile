@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 ruby "2.2.2"
 
-gem "rails", "4.1.0"
+gem "rails", "4.1.13"
 gem "jquery-rails"
 gem "unicorn"
 gem "haml-rails"
