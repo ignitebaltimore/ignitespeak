@@ -31,7 +31,6 @@ end
 
 group :development, :test do
   gem "rspec-rails"
-  gem "rspec-instafail"
   gem "database_cleaner"
   gem "capybara"
   gem "shoulda-matchers"
@@ -40,6 +39,7 @@ end
 
 group :test do
   gem "factory_girl_rails"
+  gem "rspec-instafail"
   gem "codeclimate-test-reporter", require: nil
 end
 
