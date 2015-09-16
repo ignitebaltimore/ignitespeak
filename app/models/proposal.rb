@@ -27,7 +27,8 @@ class Proposal < ActiveRecord::Base
   validates :bio, length: { maximum: 100 }
   validates :speaker_name, :title, :email, :phone, length: { maximum: 254 }
   validates :website, :allow_blank => true, 
-	:format => { :with => /\A(http|https):\/\/[a-z0-9\-\.]+\Z/},
+	:format => { :with => %r|\Ahttps?://|i, 
+	message: "Include http:// in your website URL" },
 	length: { maximum: 254 }
 
   before_create :save_hash_code
