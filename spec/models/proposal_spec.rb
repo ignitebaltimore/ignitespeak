@@ -27,4 +27,14 @@ RSpec.describe Proposal do
   it { should validate_length_of(:website).is_at_most(254) }
   it { should validate_length_of(:description).is_at_most(1000) }
   it { should validate_length_of(:bio).is_at_most(100) }
+
+#website validation
+  it { should allow_value('').for(:website) }
+  it { should allow_value('http://foo.com').for(:website) }
+  it { should allow_value('https://foo.com').for(:website) }
+  it { should allow_value('Http://www.foo.com').for(:website) }
+  it { should allow_value('HTTP://WWW.FOO.COM').for(:website) }
+  it { should_not allow_value('www.foo.com').for(:website) }
+  it { should_not allow_value('httpsss://www.foo.com').for(:website) } 
+
 end

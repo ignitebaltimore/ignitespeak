@@ -38,7 +38,7 @@ changes made to the original app.
 gem install bundler # so you can get all the other gems the app depends on
 ```
 
-3) Create a copy of the ignitespeak on your development machine (I'm assu
+3) Create a copy of the ignitespeak on your development machine (I'm assuming you already have git installed):
 
 ```bash
 # replace '#############' with your own github name
