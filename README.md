@@ -32,7 +32,7 @@ Setup
 Make sure you also create an [upstream remote](https://help.github.com/articles/configuring-a-remote-for-a-fork/) so you can get
 changes made to the original app.
 
-2) Open a terminal on your computer and run theses commands (I'm assuming you already have Ruby installed):
+2) Open a terminal on your computer and run these commands (I'm assuming you already have Ruby installed):
 
 ```bash
 gem install bundler # so you can get all the other gems the app depends on
@@ -43,6 +43,7 @@ gem install bundler # so you can get all the other gems the app depends on
 ```bash
 # replace '#############' with your own github name
 git clone https://github.com/#########/ignitespeak.git
+cd ignitespeak
 git remote add upstream https://github.com/ignitebaltimore/ignitespeak.git
 cd ignitespeak
 bin/setup
