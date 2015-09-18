@@ -28,7 +28,7 @@ but there are many others.
 
 Setup
 =====
-1) Fork the `ignitebaltimore/ignitespeak` repository to your own github account following [these instructions](https://help.github.com/articles/fork-a-repo/).
+1) Fork the `ignitebaltimore/ignitespeak` repository to your own GitHub account following [these instructions](https://help.github.com/articles/fork-a-repo/).
 Make sure you also create an [upstream remote](https://help.github.com/articles/configuring-a-remote-for-a-fork/) so you can get
 changes made to the original app.
 
@@ -45,7 +45,6 @@ gem install bundler # so you can get all the other gems the app depends on
 git clone https://github.com/#########/ignitespeak.git
 cd ignitespeak
 git remote add upstream https://github.com/ignitebaltimore/ignitespeak.git
-cd ignitespeak
 bin/setup
 rake spec # if these tests pass, you're good to go
 ```
