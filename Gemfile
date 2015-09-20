@@ -16,7 +16,7 @@ gem "filepicker-rails"
 gem "exception_notification"
 gem "rails_admin"
 gem "dotenv-rails"
-gem "sqlite3", require: true
+gem "pg" #gem "sqlite3", require: true
 
 group :assets do
   gem "sass-rails"
