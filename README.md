@@ -23,7 +23,7 @@ Requirements
 * [Ruby 2.2](https://www.ruby-lang.org/)
 * [Bundler](http://bundler.io/) gem (see below)
 
-There's a lot of ways to install Git and Ruby. Jumpstart Labs has [a good example](http://tutorials.jumpstartlab.com/topics/environment/environment.html)
+There are a lot of ways to install Git and Ruby. Jumpstart Labs has [a good example](http://tutorials.jumpstartlab.com/topics/environment/environment.html)
 but there are many others.
 
 Setup
@@ -70,7 +70,9 @@ To get your own ignitespeak app up and running, click the button
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-
+Email List for Developers
+=========================
+[https://groups.google.com/forum/#!forum/ignitespeak-dev](https://groups.google.com/forum/#!forum/ignitespeak-dev)
 Contributors
 ============
 * Original coding by [Mike Subelsky](http://www.subelsky.com/)
