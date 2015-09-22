@@ -1,5 +1,5 @@
-.span12
-  = simple_form_for proposal, html: { class: 'form-vertical' }, defaults: { input_html: { class: 'span6' } } do |f|
+.container
+  = simple_form_for proposal, html: { class: 'form-vertical' } do |f|
     = f.input :speaker_name, label: "Your name", required: true, input_html: { maxlength: 254 }
     = f.input :email, label: "Your email address", required: true, input_html: { maxlength: 254 }
     = f.input :title, label: "Title of your talk", required: true, input_html: { maxlength: 254 }
