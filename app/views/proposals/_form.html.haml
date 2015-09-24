@@ -1,12 +1,12 @@
 .container
   = simple_form_for proposal, html: { class: 'form-vertical' } do |f|
-    = f.input :speaker_name, label: "Your name", required: true, input_html: { maxlength: 254 }
-    = f.input :email, label: "Your email address", required: true, input_html: { maxlength: 254 }
-    = f.input :title, label: "Title of your talk", required: true, input_html: { maxlength: 254 }
-    = f.input :description, label: "Brief description of your talk (1000 characters maximum)", required: true, input_html: { maxlength: 1000, rows: 8 }
-    = f.input :bio, label: "A one sentence biographical description of your background (100 characters maximum).", required: true, input_html: { maxlength: 100, rows: 1 }
-    = f.input :website, label: "Your website URL, if any", required: false, input_html: { maxlength: 254 }
-    = f.input :phone, label: "Daytime phone number", required: false, input_html: { maxlength: 254 }
+    = f.input :speaker_name, label: "Your name", required: true, input_html: { maxlength: 254, style: "width: 300px;" }
+    = f.input :email, label: "Your email address", required: true, input_html: { maxlength: 254, style: "width: 300px;" }
+    = f.input :title, label: "Title of your talk", required: true, input_html: { maxlength: 254, style: "width: 300px;" }
+    = f.input :description, label: "Brief description of your talk (1000 characters maximum)", required: true, input_html: { maxlength: 1000, rows: 8, style: "width: 300px;" }
+    = f.input :bio, label: "A one sentence biographical description of your background (100 characters maximum).", required: true, input_html: { maxlength: 100, rows: 1, style: "width: 300px;" }
+    = f.input :website, label: "Your website URL, if any", required: false, input_html: { maxlength: 254, style: "width: 300px;" }
+    = f.input :phone, label: "Daytime phone number", required: false, input_html: { maxlength: 254, style: "width: 300px;" }
 
     .actions
       = f.button :submit, value: "Save Proposal", class: "btn btn-primary"

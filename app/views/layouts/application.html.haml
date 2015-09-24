@@ -10,16 +10,18 @@
 
     = csrf_meta_tags
     = yield(:head)
-
+	
   %body
-    %header.navbar.navbar-fixed-top
+    %header.navbar.navbar-default.navbar-fixed-top
       %nav.navbar-inner
         .container-fluid
-          = render 'layouts/navigation'
+          .navbar-header
+            %img{:src => "/assets/logo.gif", :width => '111', :height => '78'} 
+            = render 'layouts/navigation'
 
-    .container-fluid
+    .container
       = render 'layouts/messages'
-
+    
       #main_content
         .page-header
           %h1.span12= title
