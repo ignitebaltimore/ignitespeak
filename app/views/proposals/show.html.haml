@@ -21,9 +21,11 @@
 - if proposal.filepicker_url?
   .row
     %h2.span12 Your Proposal Has Been Received
+    %p Please review the images below to make sure your talk looks properly-formatted
+
   .row
-    .span4
-      %embed(name="plugin" src="#{proposal.filepicker_url}/convert?w=200&fit=scale&format=png")
+    = %Q|<div type="filepicker-preview" data-fp-url="#{proposal.filepicker_url}" style="width:75%; height:1000px"> </div>|.html_safe
+
   .row
     %p.span12
       %em You can upload a replacement below, if needed.
