@@ -58,6 +58,30 @@ foreman start # boots up the app, which you can access at http://127.0.0.1:5000/
 To sign into the admin system, visit `http://127.0.0.1:5000/admin`. You'll need to give the username and password
 specified in your `.env` file (which is probably "test" for both).
 
+Development Environment Using Docker Compose
+============================================
+Install [docker](https://docs.docker.com/compose/install/) & [docker-compose](https://docs.docker.com/compose/install/)
+Open a console to setup the project
+Copy .docker-custom.yml.example as .docker-custom.yml & set your uid & gid on it.
+```bash
+$ cp .docker-custom.yml.example .docker-custom.yml
+$ vim .docker-custom.yml
+```
+Get insto the app container
+```bash
+$ docker-compose run --rm app bash
+```
+bundle & db:setup the project
+```bash
+$ bundle install --path .bundle
+$ bin/rake db:setup
+$ exit
+```
+Run the server
+```bash
+$ docker-compose up
+```
+
 Orientation Video
 =================
 (sorry about the quality, I will re-record it soon)
