@@ -9,4 +9,8 @@ app:
     service: custom
   ports:
     - '5000:3000'
+  links:
+    - db
   env_file: .env
+db:
+  image: postgres
