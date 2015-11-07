@@ -60,26 +60,35 @@ specified in your `.env` file (which is probably "test" for both).
 
 Development Environment Using Docker Compose
 ============================================
-Install [docker](https://docs.docker.com/compose/install/) & [docker-compose](https://docs.docker.com/compose/install/)
-Open a console to setup the project
-Copy .docker-custom.yml.example as .docker-custom.yml & set your uid & gid on it.
+* Install [docker](https://docs.docker.com/compose/install/) & [docker-compose](https://docs.docker.com/compose/install/)
+* Open a terminal to setup the project
+* Copy .docker-custom.yml.example as .docker-custom.yml
+* Open .docker-custom.yml with your favorite editor and change the user parameter as indicated in the file
 ```bash
 $ cp .docker-custom.yml.example .docker-custom.yml
-$ vim .docker-custom.yml
+$ vim .docker-custom.yml # you can use nano, gedit or any text editor
 ```
-Get insto the app container
+* Copy the .env file
+```bash
+$ cp sample.env .env
+```
+* Get into the app container
 ```bash
 $ docker-compose run --rm app bash
 ```
-bundle & db:setup the project
+* Setup bundle and database
 ```bash
 $ bundle install --path .bundle
 $ bin/rake db:setup
 $ exit
 ```
-Run the server
+* Run the server
 ```bash
 $ docker-compose up
+```
+* To open the Rails console:
+```bash
+$ docker-compose run --rm app bin/rails console
 ```
 
 Orientation Video
