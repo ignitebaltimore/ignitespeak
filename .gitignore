@@ -19,3 +19,7 @@ doc/
 .env
 secrets.yml
 /db/*.sqlite3
+config/database.yml
+
+# Docker
+.docker-custom.yml

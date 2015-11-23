@@ -16,6 +16,7 @@ gem "filepicker-rails"
 gem "exception_notification"
 gem "rails_admin"
 gem "dotenv-rails"
+gem "pg"
 gem "sqlite3", require: true
 
 group :assets do
@@ -48,6 +49,5 @@ group :production do
   # to sqlite to make things easier for contributors. Eventually we can migrate
   # production over, as this is not a high-performance app by any means. sqlite
   # is more than adequate.
-  gem "pg"
   gem "rails_12factor"
 end
