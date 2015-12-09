@@ -1,16 +1,35 @@
 require "spec_helper"
 
-
 RSpec.describe Event do
-	it "is validate with all the required fields" do 
-		event = Event.new(
+	let(:event) do
+		Event.new(
 			title: 'Ignite'
-			)
+		)
+	end
+
+	it "is validate with all the required fields" do 
 		expect(event).to be_valid
+  	end
+
+  	it 'is invalid without a title' do
+  		event.title = nil
+  		expect(event).to be_invalid
+  	end
+
+  	it "is valid with a title"  do
+  		expect(event).to be_valid
   	end
 end
 
-	
+		
+
+
+
+
+
+
+
+
 
 
 
