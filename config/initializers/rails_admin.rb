@@ -5,27 +5,17 @@ require Rails.root.join('lib', 'rails_admin_loadevent.rb')
 
 RailsAdmin.config do |config|
 
-#  # Load the class in lib/rails_admin_loadevent.rb
-#  module RailsAdmin
-#    module Config
-#      module Actions
-#        class Loadevent < RailsAdmin::Config::Actions::Base
-#          RailsAdmin::Config::Actions.register(self)
-#        end
-#      end
-#    end
-#  end
-#
+
   config.actions do
- # root actions
-   dashboard                     # mandatory
- # collection actions
-   index                         # mandatory
+   # root actions
+   dashboard                     
+   # collection actions
+   index                         
    new
    export
    history_index
    bulk_delete
- # member actions
+   # member actions
    show
    edit
    delete
