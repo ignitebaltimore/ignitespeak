@@ -1,4 +1,6 @@
 Ignitespeak::Application.routes.draw do
+  resources :clothes
+  resources :events
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :proposals do
