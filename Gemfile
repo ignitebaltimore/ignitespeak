@@ -33,15 +33,19 @@ end
 group :development, :test do
   gem "rspec-rails"
   gem "database_cleaner"
-  gem "capybara"
+ # gem "capybara"
   gem "shoulda-matchers"
   gem "launchy"
 end
 
 group :test do
   gem "factory_girl_rails"
-  gem "rspec-instafail"
+#  gem "rspec-instafail"
   gem "codeclimate-test-reporter", require: nil
+  gem 'capybara'
+#  gem 'selenium-webdriver'
+  gem 'webrick'
+  gem 'capybara-webkit'
 end
 
 group :production do
