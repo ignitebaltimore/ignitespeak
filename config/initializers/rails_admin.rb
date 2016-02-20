@@ -40,6 +40,30 @@ RailsAdmin.config do |config|
   end
 
 
+  config.actions do
+   # root actions
+   dashboard                     
+   # collection actions
+   index                         
+   new
+   export
+   history_index
+   bulk_delete
+   # member actions
+   show
+   edit
+   delete
+   history_show
+   show_in_app
+
+   loadevent do
+    visible do
+     bindings[:abstract_model].model == Event
+    end
+   end
+  end
+
+
   ################  Global configuration  ################
 
   # Set the admin name here (optional second array element will appear in red). For example:
