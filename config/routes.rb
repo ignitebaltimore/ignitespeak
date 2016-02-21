@@ -1,4 +1,5 @@
 Ignitespeak::Application.routes.draw do
+  resources :events
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :proposals do

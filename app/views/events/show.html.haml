@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @event.title
+%p
+  %b Time:
+  = @event.time
+%p
+  %b Tickets:
+  = @event.tickets
+
+= link_to 'Edit', edit_event_path(@event)
+\|
+= link_to 'Back', events_path
