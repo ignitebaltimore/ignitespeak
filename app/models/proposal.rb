@@ -22,6 +22,8 @@
 require "digest/sha2"
 
 class Proposal < ActiveRecord::Base
+  has_one :event
+
   validates_presence_of :title, :description, :email, :bio, :speaker_name, allow_blank: false
   validates :description, length: { maximum: 1000 }
   validates :bio, length: { maximum: 100 }
