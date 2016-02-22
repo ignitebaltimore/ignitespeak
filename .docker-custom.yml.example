@@ -1,0 +1,8 @@
+# Set your uid and gid of your local user as follows:
+# user: 'UID:GID'
+# Run `id -u` and `id -g` to show them.
+custom:
+  user: '1000:100'
+  environment:
+    BUNDLE_APP_CONFIG: /app/.bundle
+    BUNDLE_JOBS: 4

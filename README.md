@@ -58,6 +58,39 @@ foreman start # boots up the app, which you can access at http://127.0.0.1:5000/
 To sign into the admin system, visit `http://127.0.0.1:5000/admin`. You'll need to give the username and password
 specified in your `.env` file (which is probably "test" for both).
 
+Development Environment Using Docker Compose
+============================================
+* Install [docker](https://docs.docker.com/compose/install/) & [docker-compose](https://docs.docker.com/compose/install/)
+* Open a terminal to setup the project
+* Copy .docker-custom.yml.example as .docker-custom.yml
+* Open .docker-custom.yml with your favorite editor and change the user parameter as indicated in the file
+```bash
+$ cp .docker-custom.yml.example .docker-custom.yml
+$ vim .docker-custom.yml # you can use nano, gedit or any text editor
+```
+* Copy the .env file
+```bash
+$ cp sample.env .env
+```
+* Get into the app container
+```bash
+$ docker-compose run --rm app bash
+```
+* Setup bundle and database
+```bash
+$ bundle install --path .bundle
+$ bin/rake db:setup
+$ exit
+```
+* Run the server
+```bash
+$ docker-compose up
+```
+* To open the Rails console:
+```bash
+$ docker-compose run --rm app bin/rails console
+```
+
 Orientation Video
 =================
 (sorry about the quality, I will re-record it soon)

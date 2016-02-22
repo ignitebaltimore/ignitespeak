@@ -27,7 +27,7 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.create(proposal_params)
     if @proposal.valid?
       flash[:success] = "We have received your proposal. Check #{@proposal.email} for further instructions."
-      ProposalMailer.confirmed_email(@proposal).deliver
+      ProposalMailer.confirmed_email(@proposal).deliver_now
       redirect_to proposal
     else
       flash.now[:error] = "We could not save your proposal. Please try again."
