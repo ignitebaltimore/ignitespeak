@@ -18,6 +18,9 @@ gem "rails_admin"
 gem "dotenv-rails"
 gem "pg"
 gem "sqlite3", require: true
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem 'devise'
 
 group :assets do
   gem "sass-rails"

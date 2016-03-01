@@ -40,11 +40,15 @@ RailsAdmin.config do |config|
   # RailsAdmin may need a way to know who the current user is]
   #config.current_user_method { current_user } # auto-generated
 
+#  config.authenticate_with do
+#    authenticate_or_request_with_http_basic do |username, password|
+#      username == ENV.fetch("ADMIN_USERNAME") && password == ENV.fetch("ADMIN_PASSWORD")
+#    end
+#  end
   config.authenticate_with do
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV.fetch("ADMIN_USERNAME") && password == ENV.fetch("ADMIN_PASSWORD")
-    end
+    warden.authenticate! scope: :admin
   end
+  config.current_user_method(&:current_admin)
 
   # Other config stuff should go here
   # If you want to track changes on your models:
