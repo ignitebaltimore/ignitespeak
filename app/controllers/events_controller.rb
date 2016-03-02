@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   def index
     @events = Event.all
+    Event.scoped
   end
 
   # GET /events/1
