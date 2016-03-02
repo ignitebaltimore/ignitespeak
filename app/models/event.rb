@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
- belongs_to :proposal
+ has_many :proposal
 
 
  validates_presence_of :title,  allow_blank: false
