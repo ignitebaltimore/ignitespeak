@@ -3,42 +3,27 @@ class Admin < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, 
          :validatable
 
- def self.do_twitter_oauth(auth, signed_in_resource = nil)
-  admin = Admin.where(:provider => auth.provider, :uid => auth.uid).first
-
-  return admin if admin
-
-  registered_admin = Admin.where(:email => auth.uid + "@twitter.com").first
-
-  return registered_admin if registered_admin
- 
-  # create user
-  admin = Admin.create(name:auth.info.name,
-    			provider:auth.provider,
-    			uid:auth.uid,
-    			email:auth.uid+"@twitter.com",
-    			password:Devise.friendly_token[0,20]
-  )
- end
-
- def self.do_google_oauth2(access_token, signed_in_resource = nil)
-    data = access_token.info
-    admin = Admin.where(:provider => access_token.provider, :uid => access_token.uid ).first
+ def self.do_generic_oauth(auth_hash, signed_in_resource = nil, provider)
+    admin = Admin.where(:provider => auth_hash.provider, :uid => auth_hash.uid ).first
 
     return admin if admin
 
-    registered_admin = Admin.where(:email => access_token.info.email).first
-
+    # twitter's email is nil
+    if provider == "twitter"
+      email_provider = auth_hash.uid + "@twitter.com"
+    else
+      email_provider = auth_hash.info.email 
+    end
+    registered_admin = Admin.where(:email => email_provider).first
     return registered_admin if registered_admin
-
     # create user
-    admin = Admin.create(name: data["name"],
-      			provider:access_token.provider,
-      			email: data["email"],
-      			uid: access_token.uid ,
-      			password: Devise.friendly_token[0,20]
+    admin = Admin.create(name: auth_hash.info.name,
+      			provider:auth_hash.provider,
+      			email: email_provider,
+      			uid: auth_hash.uid ,
+      			password: Devise.friendly_token[0,20],
+                        nickname:auth_hash.info.nickname
     )
  end
-
 end
 
