@@ -5,7 +5,6 @@ require Rails.root.join('lib', 'rails_admin_loadevent.rb')
 
 RailsAdmin.config do |config|
 
-
   config.actions do
    # root actions
    dashboard                     
