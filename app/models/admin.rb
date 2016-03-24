@@ -17,7 +17,7 @@ class Admin < ActiveRecord::Base
     registered_admin = Admin.where(:email => email_provider).first
     return registered_admin if registered_admin
     # create user
-    admin = Admin.create(name: auth_hash.info.name,
+    admin = Admin.create!(name: auth_hash.info.name,
       			provider:auth_hash.provider,
       			email: email_provider,
       			uid: auth_hash.uid ,
