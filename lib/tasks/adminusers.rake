@@ -2,21 +2,41 @@ include Rails.application.routes.url_helpers
 
 namespace :admin do
   task :adduser => :environment do
-    puts "Email address should be as your google app or twitter app account. If you would login using Twitter, you would need to provide your twitter nickname"
-    puts "============================"
-    puts "Enter Google email address:"
-    email = STDIN.gets
-    puts "============================"
-    puts "Enter Twitter nickname:"
-    nickname = STDIN.gets
-    puts "============================"
+    puts "Please choose one of the option below (1 or 2) to allow the authenticated app user to be an admin:"
+    puts " 1 Twitter"
+    puts " 2 Google"
+    option = STDIN.gets
+  
+    if option.strip == "1"
+      puts "================================================================================================="      
+
+      puts "Twitter nickname should be exactly as the Twitter app account you want to authorize."
+      puts "Enter Twitter nickname:"
+      nickname = STDIN.gets
+      nickname = nickname.strip
+      
+      email = nickname + "@twitter.com"
+    elsif option.strip == "2"
+      puts "================================================================================================="      
+
+      puts "Google nickname should be exactly as the Google app account you want to authorize."
+      puts "Enter Google email:"
+
+      email = STDIN.gets
+      email = email.strip
+      nickname = ""
+
+    else 
+      return
+    end
+   
+     
     puts "Enter a secure password:"
     password = STDIN.gets
+    password = password.strip
+    puts "================================================================================================="      
+    puts "........................Creating an admin user for an authenticated user........................."
 
-    # remove white spaces
-    password = password.strip!
-    email = email.strip!
-    nickname = nickname.strip!
     if (email.present? or nickname.present?) and password.present?
       if Admin.create!(:email => email, :nickname => nickname, :password => password)
         puts "Admin user created!" 
@@ -24,6 +44,5 @@ namespace :admin do
         puts "Failed to create user"
       end
     end
-    puts "=============END============="
   end
 end
