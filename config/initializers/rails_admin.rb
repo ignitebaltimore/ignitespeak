@@ -1,7 +1,32 @@
 # RailsAdmin config file. Generated on January 22, 2013 16:54
 # See github.com/sferik/rails_admin for more informations
 
+require Rails.root.join('lib', 'rails_admin_loadevent.rb')
+
 RailsAdmin.config do |config|
+
+  config.actions do
+   # root actions
+   dashboard                     
+   # collection actions
+   index                         
+   new
+   export
+   history_index
+   bulk_delete
+   # member actions
+   show
+   edit
+   delete
+   history_show
+   show_in_app
+
+   loadevent do
+    visible do
+     bindings[:abstract_model].model == Event
+    end
+   end
+  end
 
 
   ################  Global configuration  ################
@@ -14,11 +39,15 @@ RailsAdmin.config do |config|
   # RailsAdmin may need a way to know who the current user is]
   #config.current_user_method { current_user } # auto-generated
 
+#  config.authenticate_with do
+#    authenticate_or_request_with_http_basic do |username, password|
+#      username == ENV.fetch("ADMIN_USERNAME") && password == ENV.fetch("ADMIN_PASSWORD")
+#    end
+#  end
   config.authenticate_with do
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV.fetch("ADMIN_USERNAME") && password == ENV.fetch("ADMIN_PASSWORD")
-    end
+    warden.authenticate! scope: :admin
   end
+  config.current_user_method(&:current_admin)
 
   # Other config stuff should go here
   # If you want to track changes on your models:
@@ -37,7 +66,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Proposal']
 
   # Include specific models (exclude the others):
-   config.included_models = ['Proposal']
+   config.included_models = ['Proposal', 'Event']
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
