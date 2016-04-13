@@ -11,7 +11,7 @@ describe "omniauth authentication", :type => :feature do
      mock_twitter_authorized
   
      # create an admin user
-     ad = Admin.create!(:nickname => "Alas", :email =>"alas@twitter.com", :password => "1234567890")
+     ad = Admin.create!(:uid => "Test", :provider => "Twitter", :nickname => "Alas", :email =>"alas@twitter.com", :password => "1234567890")
      ad.save!
 
      visit rails_admin.dashboard_path
@@ -24,7 +24,7 @@ describe "omniauth authentication", :type => :feature do
      mock_twitter_unauthorized  
  
      # create an admin user
-     ad = Admin.create!(:nickname => "Alas", :email =>"alas@twitter.com", :password => "1234567890")
+     ad = Admin.create!(:uid => "Test", :provider => "Twitter", :nickname => "Alas", :email =>"alas@twitter.com", :password => "1234567890")
      ad.save!
 
      visit rails_admin.dashboard_path
@@ -45,7 +45,7 @@ describe "omniauth authentication", :type => :feature do
      # get the omniauth hash
      mock_google_authorized  
 
-     ad = Admin.create!(:nickname => "", :email =>"alas@gmail.com", :password => "1234567890")
+     ad = Admin.create!(:uid => "Test", :provider => "Google", :nickname => "", :email =>"alas@gmail.com", :password => "1234567890")
      ad.save!
 
      visit rails_admin.dashboard_path
@@ -58,7 +58,7 @@ describe "omniauth authentication", :type => :feature do
      # get the omniauth hash
      mock_google_unauthorized  
 
-     ad = Admin.create!(:nickname => "Alas", :email =>"alas@gmail.com", :password => "1234567890")
+     ad = Admin.create!(:uid => "Test", :provider => "Google", :nickname => "Alas", :email =>"alas@gmail.com", :password => "1234567890")
      ad.save!
 
      visit rails_admin.dashboard_path
