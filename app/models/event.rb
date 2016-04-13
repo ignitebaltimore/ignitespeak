@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
    list do
     field :title
     field :time
-    field :tickets 
+    field :tickets_url 
    end
  end
 end

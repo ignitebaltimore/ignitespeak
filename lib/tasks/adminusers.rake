@@ -14,7 +14,8 @@ namespace :admin do
       puts "Enter Twitter nickname:"
       nickname = STDIN.gets
       nickname = nickname.strip
-      
+      provider = "Twitter"     
+      uid = "Manual" 
       email = nickname + "@twitter.com"
     elsif option.strip == "2"
       puts "================================================================================================="      
@@ -25,7 +26,8 @@ namespace :admin do
       email = STDIN.gets
       email = email.strip
       nickname = ""
-
+      uid = "Manual"
+      provider = "Google"
     else 
       return
     end
@@ -38,7 +40,7 @@ namespace :admin do
     puts "........................Creating an admin user for an authenticated user........................."
 
     if (email.present? or nickname.present?) and password.present?
-      if Admin.create!(:email => email, :nickname => nickname, :password => password)
+      if Admin.create!(:uid => uid, :email => email, :nickname => nickname, :password => password, :provider => provider)
         puts "Admin user created!" 
       else
         puts "Failed to create user"

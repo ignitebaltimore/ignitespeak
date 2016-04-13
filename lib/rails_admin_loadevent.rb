@@ -28,7 +28,13 @@ module RailsAdmin
              allSelectedEvents.each { |eachEvent|
 	       #if records already exist
               unless Event.exists?(eachEvent.attributes)
-		recordEvent = Event.create(eachEvent.attributes)
+                tempAttributes = eachEvent.attributes
+                tempAttributes[:time] = ""
+                puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1"
+                tempAttributes.each do |key, array|
+                  puts key
+                end
+		recordEvent = Event.create(tempAttributes)
                 if recordEvent.valid?
 		  recordEvent.save
 		end
