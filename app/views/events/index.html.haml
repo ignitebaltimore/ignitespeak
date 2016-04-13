@@ -15,7 +15,7 @@
       %tr
         %td= event.title
         %td= event.time
-        %td= event.tickets
+        %td= event.tickets_url
         %td= link_to 'Show', event
         %td= link_to 'Edit', edit_event_path(event)
         %td= link_to 'Destroy', event, :method => :delete, :data => { :confirm => 'Are you sure?' }
