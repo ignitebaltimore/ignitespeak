@@ -1,0 +1,7 @@
+en:
+  admin:
+    actions:
+      dashboard:
+        title: "IgniteSpeak Admin"
+        menu: "Dashboard"
+        breadcrumb: "Dashboard"
