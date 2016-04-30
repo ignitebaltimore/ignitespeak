@@ -2,7 +2,24 @@
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
+  config.actions do |actions|
+    dashboard do
+      statistics false
+    end
 
+    # collection actions
+    index                         # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    # member actions
+    show
+    edit
+    delete
+    history_show
+    show_in_app
+  end
 
   ################  Global configuration  ################
 
@@ -61,41 +78,21 @@ RailsAdmin.config do |config|
 
   ###  Proposal  ###
 
-  # config.model 'Proposal' do
-
-  #   # You can copy this to a 'rails_admin do ... end' block inside your proposal.rb model definition
-
-  #   # Found associations:
-
-
-
-  #   # Found columns:
-
-  #     configure :id, :integer
-  #     configure :speaker_name, :string
-  #     configure :title, :string
-  #     configure :description, :text
-  #     configure :email, :string
-  #     configure :phone, :string
-  #     configure :bio, :text
-  #     configure :website, :string
-  #     configure :hash_code, :string
-  #     configure :created_at, :datetime
-  #     configure :updated_at, :datetime
-  #     configure :selected, :boolean
-  #     configure :position, :integer
-  #     configure :filepicker_url, :string
-
-  #   # Cross-section configuration:
-
-  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
-  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
-  #     # label_plural 'My models'      # Same, plural
-  #     # weight 0                      # Navigation priority. Bigger is higher.
-  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
-  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
-
-  #   # Section specific configuration:
+   config.model 'Proposal' do
+       configure :id, :integer
+       configure :speaker_name, :string
+       configure :title, :string
+       configure :description, :text
+       configure :email, :string
+       configure :phone, :string
+       configure :bio, :text
+       configure :website, :string
+       configure :hash_code, :string
+       configure :created_at, :datetime
+       configure :updated_at, :datetime
+       configure :selected, :boolean
+       configure :position, :integer
+   end
 
   #     list do
   #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header

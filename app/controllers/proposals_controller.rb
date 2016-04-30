@@ -76,6 +76,6 @@ class ProposalsController < ApplicationController
   private
 
   def proposal_params
-    params.require(:proposal).permit(:bio,:description,:email,:phone,:title,:website,:speaker_name,:filepicker_url,:selected,:archived,:hash_code,:position)
+    params.require(:proposal).permit(:bio,:description,:email,:phone,:title,:website,:speaker_name,:selected,:archived,:hash_code,:position)
   end
 end
