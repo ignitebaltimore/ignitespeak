@@ -92,7 +92,6 @@ RailsAdmin.config do |config|
        configure :updated_at, :datetime
        configure :selected, :boolean
        configure :position, :integer
-       configure :filepicker_url, :string
    end
 
   #     list do

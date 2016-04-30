@@ -17,33 +17,3 @@
   .span12.bio= proposal.bio
   %h2.span12 Speaker Website
   .span12.website= proposal.website
-
-- if proposal.filepicker_url?
-  .row
-    %h2.span12 Your Proposal Has Been Received
-    %p Please review the images below to make sure your talk looks properly-formatted
-
-  .row
-    = %Q|<div type="filepicker-preview" data-fp-url="#{proposal.filepicker_url}" style="width:75%; height:1000px"> </div>|.html_safe
-
-  .row
-    %p.span12
-      %em You can upload a replacement below, if needed.
-
-- if proposal.selected?
-  .row
-    %h2.span12(name="upload") Upload Your Presentation
-  .row
-    %p.span12
-      Please read our <a href="http://www.ignitebaltimore.com/speaking">proposal guidelines</a> which include instructions on the file format.
-    %p.span12
-      %strong We strongly encourage you to upload your files in PDF format. We cannot guarantee the image quality if you provide us with another format.
-
-  .row
-    = form_for proposal do |f|
-      .span12
-        %input(type="filepicker" name="proposal[filepicker_url]" onchange="$('form.edit_proposal').submit();"){ data: { fp_button_text: "Click here to upload your presentation", fp_button_class: "btn btn-primary", fp_container: "modal", fp_multiple: false } }
-
-- content_for :bottom do
-  :javascript
-    function submitForm(fpfiles) { console.info(fpfiles) }

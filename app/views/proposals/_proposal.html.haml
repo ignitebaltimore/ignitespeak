@@ -1,9 +1,5 @@
 %tr.proposal
-  %td.title
-    = link_to_if(proposal.filepicker_url?,proposal.title,proposal.filepicker_url)
-    - if proposal.filepicker_url.blank?
-      = "-"
-      %i Not uploaded yet
+  %td.title= proposal.title
   %td
     = proposal.speaker_name
     - if proposal.website?
